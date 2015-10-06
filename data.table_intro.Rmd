@@ -6,6 +6,8 @@ date: 2015-06-24
 
 ```{r}
 library(data.table)
+library(knitr)
+opts_chunk$set(eval=FALSE)
 ```
 
 Эта виньетка представляет собой введение в синтакс *data.table*, его общий вид, способы создания поднаборов строк (*subset*), выбора и вычисления колонок (*select*, *compute*), агрегирования по группам (*by group*). Знакомство с базовой структурой данных *data.frame* является полезным, но не обязательным.
@@ -32,7 +34,32 @@ library(data.table)
 ```{r}
 flights <- fread("https://raw.githubusercontent.com/wiki/arunsrinivasan/flights/NYCflights14/flights14.csv")
 flights
+#         year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight
+#      1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1
+#      2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3
+#      3: 2014     1   1     1902         2     2224         9         0      AA  N327AA     21
+#      4: 2014     1   1      722        -8     1014       -26         0      AA  N3EHAA     29
+#      5: 2014     1   1     1347         2     1706         1         0      AA  N319AA    117
+#     ---                                                                                      
+# 253312: 2014    10  31     1459         1     1747       -30         0      UA  N23708   1744
+# 253313: 2014    10  31      854        -5     1147       -14         0      UA  N33132   1758
+# 253314: 2014    10  31     1102        -8     1311        16         0      MQ  N827MQ   3591
+# 253315: 2014    10  31     1106        -4     1325        15         0      MQ  N511MQ   3592
+# 253316: 2014    10  31      824        -5     1045         1         0      MQ  N813MQ   3599
+#         origin dest air_time distance hour min
+#      1:    JFK  LAX      359     2475    9  14
+#      2:    JFK  LAX      363     2475   11  57
+#      3:    JFK  LAX      351     2475   19   2
+#      4:    LGA  PBI      157     1035    7  22
+#      5:    JFK  LAX      350     2475   13  47
+#     ---                                       
+# 253312:    LGA  IAH      201     1416   14  59
+# 253313:    EWR  IAH      189     1400    8  54
+# 253314:    LGA  RDU       83      431   11   2
+# 253315:    LGA  DTW       75      502   11   6
+# 253316:    LGA  SDF      110      659    8  24
 dim(flights)
+# [1] 253316     17
 ```
 
 Так как мы будем использовать этот набор данных во всех виньетках, может быть, лучше скачать файл один раз и затем загрузить его с диска.
@@ -57,7 +84,15 @@ dim(flights)
 ```{r}
 DT = data.table(ID = c("b","b","b","a","a","c"), a = 1:6, b = 7:12, c=13:18)
 DT
+#    ID a  b  c
+# 1:  b 1  7 13
+# 2:  b 2  8 14
+# 3:  b 3  9 15
+# 4:  a 4 10 16
+# 5:  a 5 11 17
+# 6:  c 6 12 18
 class(DT$ID)
+# [1] "character"
 ```
 
 Вы также можете конвертировать существующие объекты в *data.table*, используя `as.data.table()`.
@@ -73,6 +108,7 @@ class(DT$ID)
 
 ```{r}
 getOption("datatable.print.nrows")
+# [1] 100
 ```
 
 * *data.table* никогда не устанавливает имена строк (*row names*). Почему - мы увидим в виньетке “Keys and fast binary search based subset”.
@@ -82,7 +118,7 @@ getOption("datatable.print.nrows")
 
 По сравнению с *data.frame*, мы можете сделать *гораздо больше*, чем выбор строк и столбцов в таблице при помощи `[ ... ]`. Для понимания этого посмотрим на общий вид синтаксиса *data.table*, как показано ниже:
 
-```{r, eval=FALSE}
+```{r}
 DT[i, j, by]
 
 ##   R:      i                 j        by
@@ -105,6 +141,20 @@ DT[i, j, by]
 ```{r}
 ans <- flights[origin == "JFK" & month == 6L]
 head(ans)
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     6   1      851        -9     1205        -5         0      AA  N787AA      1    JFK
+# 2: 2014     6   1     1220       -10     1522       -13         0      AA  N795AA      3    JFK
+# 3: 2014     6   1      718        18     1014        -1         0      AA  N784AA      9    JFK
+# 4: 2014     6   1     1024        -6     1314       -16         0      AA  N791AA     19    JFK
+# 5: 2014     6   1     1841        -4     2125       -45         0      AA  N790AA     21    JFK
+# 6: 2014     6   1     1454        -6     1757       -23         0      AA  N785AA    117    JFK
+#    dest air_time distance hour min
+# 1:  LAX      324     2475    8  51
+# 2:  LAX      329     2475   12  20
+# 3:  LAX      326     2475    7  18
+# 4:  LAX      320     2475   10  24
+# 5:  LAX      326     2475   18  41
+# 6:  LAX      329     2475   14  54
 ```
 
 * В таблице *data.table* к столбцам можно обращаться, как *если бы они были переменными*. Таким образом, мы просто обратились к `dest` (`origin` в примере выше - прим. пер.) и `month` как к переменным. Нам не нужно каждый раз добавлять префикс `flights$`. Тем не менее, использование `flights$dest` и `flights$month` будет нормально работать.
@@ -119,6 +169,12 @@ head(ans)
 ```{r}
 ans <- flights[1:2]
 ans
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1    JFK
+# 2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3    JFK
+#    dest air_time distance hour min
+# 1:  LAX      359     2475    9  14
+# 2:  LAX      363     2475   11  57
 ```
 
 * В этом случае условия нет. Индексы строк уже предоставлены в составе `i`. Поэтому мы возвращаем *data.table* со всеми столбцами из `flights` для этих индексов строк.
@@ -130,6 +186,20 @@ ans
 ```{r}
 ans <- flights[order(origin, -dest)]
 head(ans)
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     1   5      836         6     1151        49         0      EV  N12175   4419    EWR
+# 2: 2014     1   6      833         7     1111        13         0      EV  N24128   4419    EWR
+# 3: 2014     1   7      811        -6     1035       -13         0      EV  N12142   4419    EWR
+# 4: 2014     1   8      810        -7     1036       -12         0      EV  N11193   4419    EWR
+# 5: 2014     1   9      833        16     1055         7         0      EV  N14198   4419    EWR
+# 6: 2014     1  13      923        66     1154        66         0      EV  N12157   4419    EWR
+#    dest air_time distance hour min
+# 1:  XNA      195     1131    8  36
+# 2:  XNA      190     1131    8  33
+# 3:  XNA      179     1131    8  11
+# 4:  XNA      184     1131    8  10
+# 5:  XNA      181     1131    8  33
+# 6:  XNA      188     1131    9  23
 ```
 
 #### Функция `order()` является внутренне оптимизированной
@@ -137,7 +207,7 @@ head(ans)
 * Мы можем использовать "-" в таблице *data.table* для сортировки в порядке убывания. 
 * Кроме того, `order(...)` в таблице *data.table* использует внутренний способ вычисления `forder()`, который гораздо быстрее, чем `base::order`. Вот небольшой пример, чтобы проиллюстрировать разницу.
 
-```{r, eval=FALSE}
+```{r}
 odt = data.table(col=sample(1e7))
 (t1 <- system.time(ans1 <- odt[base::order(col)]))  ## uses order from base R
 #    user  system elapsed 
@@ -161,6 +231,7 @@ odt = data.table(col=sample(1e7))
 ```{r}
 ans <- flights[, arr_delay]
 head(ans)
+# [1]  13  13   9 -26   1   0
 ```
 
 * Поскольку можно обращаться к столбцам, как если бы они были переменными в таблице, мы напрямую обратились к *переменным*, которые хотим выбрать. Поскольку нам нужны *все строки*, мы просто пропустили `i`.
@@ -172,6 +243,13 @@ head(ans)
 ```{r}
 ans <- flights[, list(arr_delay)]
 head(ans)
+#    arr_delay
+# 1:        13
+# 2:        13
+# 3:         9
+# 4:       -26
+# 5:         1
+# 6:         0
 ```
 
 * Мы обернули переменные (имена столбцов) вызовом `list()`, что гарантирует возврат объекта *data.table*. В случае отдельного имени столбца, не обернутого в `list()`, вместо этого возвращается вектор, как было показано в предыдущем примере.
@@ -189,8 +267,15 @@ head(ans)
 #### - Выбрать столбцы `arr_delay` и `dep_delay`.
 
 ```{r}
-ans <- flights[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
+ans <- flights[, .(arr_delay, dep_delay)]
 head(ans)
+#    arr_delay dep_delay
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4
 
 ## alternatively
 # ans <- flights[, list(arr_delay, dep_delay)]
@@ -203,6 +288,13 @@ head(ans)
 ```{r}
 ans <- flights[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
 head(ans)
+#    delay_arr delay_dep
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4
 ```
 
 Вот и все.
@@ -215,6 +307,7 @@ head(ans)
 ```{r}
 ans <- flights[, sum((arr_delay + dep_delay) < 0)]
 ans
+# [1] 141814
 ```
 
 #### Что здесь происходит?
@@ -229,6 +322,8 @@ ans
 ans <- flights[origin == "JFK" & month == 6L, 
                .(m_arr=mean(arr_delay), m_dep=mean(dep_delay))]
 ans
+#       m_arr    m_dep
+# 1: 5.839349 9.807884
 ```
 
 * Мы сперва выбрали строки в `i`, найдя индексы, для которых значение `origin` равно “JFK”, а значение `month` равно 6. В этот момент мы *не выбрали* часть целой таблицы *data.table*, соответствующую этим строкам.
@@ -242,6 +337,7 @@ ans
 ```{r}
 ans <- flights[origin == "JFK" & month == 6L, length(dest)]
 ans
+# [1] 8422
 ```
 
 Функция `length()` требует передачи ей аргумента. Нам нужно лишь рассчитать количество строк в поднаборе. На самом деле, вы могли бы использовать любой столбец в качестве аргумента `length()`.
@@ -257,11 +353,12 @@ ans
 ```{r}
 ans <- flights[origin == "JFK" & month == 6L, .N]
 ans
+# [1] 8422
 ```
 
 * Еще раз: вы выбираем поднабор в `i` для получения индексов строк, для которых значение `origin` равно “JFK”, а значение `month` равно 6.
 
-* Мы вилим, что `j` использует только `.N`и никаких столбцов. Поэтому весь поднабор на "материализовался". Мы просто вернули число строк в поднаборе (которое является всего лишь длиной индекса строк).
+* Мы видим, что `j` использует только `.N`и никаких столбцов. Поэтому весь поднабор на "материализовался". Мы просто вернули число строк в поднаборе (которое является всего лишь длиной индекса строк).
 
 * Обратите внимание, что мы не обернули `.N` в `list()` или в `.()`, поэтому возвращен вектор.
 
@@ -277,6 +374,13 @@ ans
 ```{r}
 ans <- flights[, c("arr_delay", "dep_delay"), with=FALSE]
 head(ans)
+#    arr_delay dep_delay
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4
 ```
 
 Этот аргумент назват `with`, как функция R `with()`, из-за подобной функциональности. Предположим, у вас есть *data.frame* `DF`, и вы хотите выбрать все строки, для которых `x > 1`. 
@@ -286,9 +390,21 @@ DF = data.frame(x = c(1,1,1,2,2,3,3,3), y = 1:8)
 
 ## (1) normal way
 DF[DF$x > 1, ] # data.frame needs that ',' as well
+#   x y
+# 4 2 4
+# 5 2 5
+# 6 3 6
+# 7 3 7
+# 8 3 8
 
 ## (2) using with
 DF[with(DF, x > 1), ]
+#   x y
+# 4 2 4
+# 5 2 5
+# 6 3 6
+# 7 3 7
+# 8 3 8
 ```
 
 * Использование `with()` в (2) позволяет использовать столбец `x` в `DF` как переменную.
@@ -297,7 +413,7 @@ DF[with(DF, x > 1), ]
 
 * Мы также можем исключать столбцы при помощи `-` или `!`. Например:
 
-```{r, eval=FALSE}
+```{r}
 ## not run
 
 # returns all columns except arr_delay and dep_delay
@@ -308,7 +424,7 @@ ans <- flights[, -c("arr_delay", "dep_delay"), with=FALSE]
 
 * Начиная с v1.9.5+, мы также можем выбирать с указанием начального и конечного имен столбцов, например, `year:day` выберет первые три столбца.
 
-```{r, eval=FALSE}
+```{r}
 ## not run
 
 # returns year,month and day

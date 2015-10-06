@@ -66,7 +66,9 @@ img {
 </div>
 
 
-<pre class="r"><code>library(data.table)</code></pre>
+<pre class="r"><code>library(data.table)
+library(knitr)
+opts_chunk$set(eval=FALSE)</code></pre>
 <p>Эта виньетка представляет собой введение в синтакс <em>data.table</em>, его общий вид, способы создания поднаборов строк (<em>subset</em>), выбора и вычисления колонок (<em>select</em>, <em>compute</em>), агрегирования по группам (<em>by group</em>). Знакомство с базовой структурой данных <em>data.frame</em> является полезным, но не обязательным.</p>
 <div id="---data.table" class="section level2">
 <h2>Анализ данных с data.table</h2>
@@ -83,33 +85,33 @@ img {
 <p>В этой виньетке мы используем набор данных <a href="https://github.com/arunsrinivasan/flights/wiki/NYC-Flights-2014-data">NYC-flights14</a>. Он содержит данные о времени полетов от <a href="http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236">Bureau of Transporation Statistics</a> для всех рейсов из аэропортов Нью-Йорка в 2014 г. (по аналогии с <a href="https://github.com/hadley/nycflights13">nycflights13</a>). Данные доступны только для с января по октябрь 2014 г.</p>
 <p>Мы можем использовать быструю функцию для чтения <code>fread</code> из <em>data.table</em> для непосредственной загрузки набора данных <em>flights</em>:</p>
 <pre class="r"><code>flights &lt;- fread(&quot;https://raw.githubusercontent.com/wiki/arunsrinivasan/flights/NYCflights14/flights14.csv&quot;)
-flights</code></pre>
-<pre><code>##         year month day dep_time dep_delay arr_time arr_delay cancelled
-##      1: 2014     1   1      914        14     1238        13         0
-##      2: 2014     1   1     1157        -3     1523        13         0
-##      3: 2014     1   1     1902         2     2224         9         0
-##      4: 2014     1   1      722        -8     1014       -26         0
-##      5: 2014     1   1     1347         2     1706         1         0
-##     ---                                                               
-## 253312: 2014    10  31     1459         1     1747       -30         0
-## 253313: 2014    10  31      854        -5     1147       -14         0
-## 253314: 2014    10  31     1102        -8     1311        16         0
-## 253315: 2014    10  31     1106        -4     1325        15         0
-## 253316: 2014    10  31      824        -5     1045         1         0
-##         carrier tailnum flight origin dest air_time distance hour min
-##      1:      AA  N338AA      1    JFK  LAX      359     2475    9  14
-##      2:      AA  N335AA      3    JFK  LAX      363     2475   11  57
-##      3:      AA  N327AA     21    JFK  LAX      351     2475   19   2
-##      4:      AA  N3EHAA     29    LGA  PBI      157     1035    7  22
-##      5:      AA  N319AA    117    JFK  LAX      350     2475   13  47
-##     ---                                                              
-## 253312:      UA  N23708   1744    LGA  IAH      201     1416   14  59
-## 253313:      UA  N33132   1758    EWR  IAH      189     1400    8  54
-## 253314:      MQ  N827MQ   3591    LGA  RDU       83      431   11   2
-## 253315:      MQ  N511MQ   3592    LGA  DTW       75      502   11   6
-## 253316:      MQ  N813MQ   3599    LGA  SDF      110      659    8  24</code></pre>
-<pre class="r"><code>dim(flights)</code></pre>
-<pre><code>## [1] 253316     17</code></pre>
+flights
+#         year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight
+#      1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1
+#      2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3
+#      3: 2014     1   1     1902         2     2224         9         0      AA  N327AA     21
+#      4: 2014     1   1      722        -8     1014       -26         0      AA  N3EHAA     29
+#      5: 2014     1   1     1347         2     1706         1         0      AA  N319AA    117
+#     ---                                                                                      
+# 253312: 2014    10  31     1459         1     1747       -30         0      UA  N23708   1744
+# 253313: 2014    10  31      854        -5     1147       -14         0      UA  N33132   1758
+# 253314: 2014    10  31     1102        -8     1311        16         0      MQ  N827MQ   3591
+# 253315: 2014    10  31     1106        -4     1325        15         0      MQ  N511MQ   3592
+# 253316: 2014    10  31      824        -5     1045         1         0      MQ  N813MQ   3599
+#         origin dest air_time distance hour min
+#      1:    JFK  LAX      359     2475    9  14
+#      2:    JFK  LAX      363     2475   11  57
+#      3:    JFK  LAX      351     2475   19   2
+#      4:    LGA  PBI      157     1035    7  22
+#      5:    JFK  LAX      350     2475   13  47
+#     ---                                       
+# 253312:    LGA  IAH      201     1416   14  59
+# 253313:    EWR  IAH      189     1400    8  54
+# 253314:    LGA  RDU       83      431   11   2
+# 253315:    LGA  DTW       75      502   11   6
+# 253316:    LGA  SDF      110      659    8  24
+dim(flights)
+# [1] 253316     17</code></pre>
 <p>Так как мы будем использовать этот набор данных во всех виньетках, может быть, лучше скачать файл один раз и затем загрузить его с диска.</p>
 </div>
 <div class="section level2">
@@ -126,16 +128,16 @@ flights</code></pre>
 <h3>a) Что такое <em>data.table</em>?</h3>
 <p><em>data.table</em> является пакетов, обеспечивающим <strong>улучшенную версию</strong> таблиц данных <em>data.frames</em>. В разделе “Данные” мы уже создали таблицу <em>data.table</em> при помощи <code>fread()</code>. Мы также можем создать таблицу, использую функцию <code>data.table()</code>. Пример:</p>
 <pre class="r"><code>DT = data.table(ID = c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;a&quot;,&quot;c&quot;), a = 1:6, b = 7:12, c=13:18)
-DT</code></pre>
-<pre><code>##    ID a  b  c
-## 1:  b 1  7 13
-## 2:  b 2  8 14
-## 3:  b 3  9 15
-## 4:  a 4 10 16
-## 5:  a 5 11 17
-## 6:  c 6 12 18</code></pre>
-<pre class="r"><code>class(DT$ID)</code></pre>
-<pre><code>## [1] &quot;character&quot;</code></pre>
+DT
+#    ID a  b  c
+# 1:  b 1  7 13
+# 2:  b 2  8 14
+# 3:  b 3  9 15
+# 4:  a 4 10 16
+# 5:  a 5 11 17
+# 6:  c 6 12 18
+class(DT$ID)
+# [1] &quot;character&quot;</code></pre>
 <p>Вы также можете конвертировать существующие объекты в <em>data.table</em>, используя <code>as.data.table()</code>.</p>
 <div id="--" class="section level4">
 <h4>Обратите внимание, что:</h4>
@@ -144,8 +146,8 @@ DT</code></pre>
 <li><p>Номера строк выводятся вместе с <code>:</code> для их визуального отделения от первого столбца.</p></li>
 <li><p>Когда количество строк для вывода превышает значение глобального параметра <code>datatable.print.nrows</code> (по умолчанию оно равно 100), автоматически выводятся только первые 5 и последний 5 строк (как можно видеть в разделе “Данные”).</p></li>
 </ul>
-<pre class="r"><code>getOption(&quot;datatable.print.nrows&quot;)</code></pre>
-<pre><code>## [1] 100</code></pre>
+<pre class="r"><code>getOption(&quot;datatable.print.nrows&quot;)
+# [1] 100</code></pre>
 <ul>
 <li><em>data.table</em> никогда не устанавливает имена строк (<em>row names</em>). Почему - мы увидим в виньетке “Keys and fast binary search based subset”.</li>
 </ul>
@@ -170,21 +172,21 @@ DT</code></pre>
 <div id="-------jfk--." class="section level4">
 <h4>- Выбрать все рейсы с начальной точкой (аэропортом) “JFK” за июнь.</h4>
 <pre class="r"><code>ans &lt;- flights[origin == &quot;JFK&quot; &amp; month == 6L]
-head(ans)</code></pre>
-<pre><code>##    year month day dep_time dep_delay arr_time arr_delay cancelled carrier
-## 1: 2014     6   1      851        -9     1205        -5         0      AA
-## 2: 2014     6   1     1220       -10     1522       -13         0      AA
-## 3: 2014     6   1      718        18     1014        -1         0      AA
-## 4: 2014     6   1     1024        -6     1314       -16         0      AA
-## 5: 2014     6   1     1841        -4     2125       -45         0      AA
-## 6: 2014     6   1     1454        -6     1757       -23         0      AA
-##    tailnum flight origin dest air_time distance hour min
-## 1:  N787AA      1    JFK  LAX      324     2475    8  51
-## 2:  N795AA      3    JFK  LAX      329     2475   12  20
-## 3:  N784AA      9    JFK  LAX      326     2475    7  18
-## 4:  N791AA     19    JFK  LAX      320     2475   10  24
-## 5:  N790AA     21    JFK  LAX      326     2475   18  41
-## 6:  N785AA    117    JFK  LAX      329     2475   14  54</code></pre>
+head(ans)
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     6   1      851        -9     1205        -5         0      AA  N787AA      1    JFK
+# 2: 2014     6   1     1220       -10     1522       -13         0      AA  N795AA      3    JFK
+# 3: 2014     6   1      718        18     1014        -1         0      AA  N784AA      9    JFK
+# 4: 2014     6   1     1024        -6     1314       -16         0      AA  N791AA     19    JFK
+# 5: 2014     6   1     1841        -4     2125       -45         0      AA  N790AA     21    JFK
+# 6: 2014     6   1     1454        -6     1757       -23         0      AA  N785AA    117    JFK
+#    dest air_time distance hour min
+# 1:  LAX      324     2475    8  51
+# 2:  LAX      329     2475   12  20
+# 3:  LAX      326     2475    7  18
+# 4:  LAX      320     2475   10  24
+# 5:  LAX      326     2475   18  41
+# 6:  LAX      329     2475   14  54</code></pre>
 <ul>
 <li><p>В таблице <em>data.table</em> к столбцам можно обращаться, как <em>если бы они были переменными</em>. Таким образом, мы просто обратились к <code>dest</code> (<code>origin</code> в примере выше - прим. пер.) и <code>month</code> как к переменным. Нам не нужно каждый раз добавлять префикс <code>flights$</code>. Тем не менее, использование <code>flights$dest</code> и <code>flights$month</code> будет нормально работать.</p></li>
 <li><p>Были рассчитаны <em>индексы строк</em>, удовлетворяющих условию <code>origin == &quot;JFK&quot; &amp; month == 6L</code>, и, поскольку больше ничего делать не нужно, <em>data.table</em> просто возвратил все столбцы <code>flights</code> в соответствии с этими <em>индексами строк</em>.</p></li>
@@ -194,13 +196,13 @@ head(ans)</code></pre>
 <div id="------flights." class="section level4">
 <h4>- Выбрать первые две строки из таблицы <code>flights</code>.</h4>
 <pre class="r"><code>ans &lt;- flights[1:2]
-ans</code></pre>
-<pre><code>##    year month day dep_time dep_delay arr_time arr_delay cancelled carrier
-## 1: 2014     1   1      914        14     1238        13         0      AA
-## 2: 2014     1   1     1157        -3     1523        13         0      AA
-##    tailnum flight origin dest air_time distance hour min
-## 1:  N338AA      1    JFK  LAX      359     2475    9  14
-## 2:  N335AA      3    JFK  LAX      363     2475   11  57</code></pre>
+ans
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1    JFK
+# 2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3    JFK
+#    dest air_time distance hour min
+# 1:  LAX      359     2475    9  14
+# 2:  LAX      363     2475   11  57</code></pre>
 <ul>
 <li>В этом случае условия нет. Индексы строк уже предоставлены в составе <code>i</code>. Поэтому мы возвращаем <em>data.table</em> со всеми столбцами из <code>flights</code> для этих индексов строк.</li>
 </ul>
@@ -209,21 +211,21 @@ ans</code></pre>
 <h4>- Упорядочить <code>flights</code> сначала по столбцу <code>origin</code> в порядке возрастания, а затем по <code>dest</code> в порядке убывания.</h4>
 <p>Мы можем использовать для этого базовую функцию R <code>order()</code>.</p>
 <pre class="r"><code>ans &lt;- flights[order(origin, -dest)]
-head(ans)</code></pre>
-<pre><code>##    year month day dep_time dep_delay arr_time arr_delay cancelled carrier
-## 1: 2014     1   5      836         6     1151        49         0      EV
-## 2: 2014     1   6      833         7     1111        13         0      EV
-## 3: 2014     1   7      811        -6     1035       -13         0      EV
-## 4: 2014     1   8      810        -7     1036       -12         0      EV
-## 5: 2014     1   9      833        16     1055         7         0      EV
-## 6: 2014     1  13      923        66     1154        66         0      EV
-##    tailnum flight origin dest air_time distance hour min
-## 1:  N12175   4419    EWR  XNA      195     1131    8  36
-## 2:  N24128   4419    EWR  XNA      190     1131    8  33
-## 3:  N12142   4419    EWR  XNA      179     1131    8  11
-## 4:  N11193   4419    EWR  XNA      184     1131    8  10
-## 5:  N14198   4419    EWR  XNA      181     1131    8  33
-## 6:  N12157   4419    EWR  XNA      188     1131    9  23</code></pre>
+head(ans)
+#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin
+# 1: 2014     1   5      836         6     1151        49         0      EV  N12175   4419    EWR
+# 2: 2014     1   6      833         7     1111        13         0      EV  N24128   4419    EWR
+# 3: 2014     1   7      811        -6     1035       -13         0      EV  N12142   4419    EWR
+# 4: 2014     1   8      810        -7     1036       -12         0      EV  N11193   4419    EWR
+# 5: 2014     1   9      833        16     1055         7         0      EV  N14198   4419    EWR
+# 6: 2014     1  13      923        66     1154        66         0      EV  N12157   4419    EWR
+#    dest air_time distance hour min
+# 1:  XNA      195     1131    8  36
+# 2:  XNA      190     1131    8  33
+# 3:  XNA      179     1131    8  11
+# 4:  XNA      184     1131    8  10
+# 5:  XNA      181     1131    8  33
+# 6:  XNA      188     1131    9  23</code></pre>
 </div>
 <div id="-order---" class="section level4">
 <h4>Функция <code>order()</code> является внутренне оптимизированной</h4>
@@ -251,8 +253,8 @@ head(ans)</code></pre>
 <div id="--arr_delay----." class="section level4">
 <h4>- Выбрать столбец <code>arr_delay</code>, но вернуть как <em>вектор</em>.</h4>
 <pre class="r"><code>ans &lt;- flights[, arr_delay]
-head(ans)</code></pre>
-<pre><code>## [1]  13  13   9 -26   1   0</code></pre>
+head(ans)
+# [1]  13  13   9 -26   1   0</code></pre>
 <ul>
 <li><p>Поскольку можно обращаться к столбцам, как если бы они были переменными в таблице, мы напрямую обратились к <em>переменным</em>, которые хотим выбрать. Поскольку нам нужны <em>все строки</em>, мы просто пропустили <code>i</code>.</p></li>
 <li><p>Были возвращены <em>все</em> строки для столбца <code>arr_delay</code>.</p></li>
@@ -261,14 +263,14 @@ head(ans)</code></pre>
 <div id="--arr_delay----data.table." class="section level4">
 <h4>- Выбрать столбец <code>arr_delay</code>, но вернуть как <em>data.table</em>.</h4>
 <pre class="r"><code>ans &lt;- flights[, list(arr_delay)]
-head(ans)</code></pre>
-<pre><code>##    arr_delay
-## 1:        13
-## 2:        13
-## 3:         9
-## 4:       -26
-## 5:         1
-## 6:         0</code></pre>
+head(ans)
+#    arr_delay
+# 1:        13
+# 2:        13
+# 3:         9
+# 4:       -26
+# 5:         1
+# 6:         0</code></pre>
 <ul>
 <li><p>Мы обернули переменные (имена столбцов) вызовом <code>list()</code>, что гарантирует возврат объекта <em>data.table</em>. В случае отдельного имени столбца, не обернутого в <code>list()</code>, вместо этого возвращается вектор, как было показано в предыдущем примере.</p></li>
 <li><p><em>data.table</em> также позволяет использовать <code>.()</code>. Это <em>псевдоним</em> (alias) для <code>list()</code>. Используйте тот или иной вариант в зависимости от своих предпочтений.</p></li>
@@ -282,16 +284,17 @@ head(ans)</code></pre>
 </div>
 <div id="--arr_delay--dep_delay." class="section level4">
 <h4>- Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code>.</h4>
-<pre class="r"><code>ans &lt;- flights[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
-head(ans)</code></pre>
-<pre><code>##    delay_arr delay_dep
-## 1:        13        14
-## 2:        13        -3
-## 3:         9         2
-## 4:       -26        -8
-## 5:         1         2
-## 6:         0         4</code></pre>
-<pre class="r"><code>## alternatively
+<pre class="r"><code>ans &lt;- flights[, .(arr_delay, dep_delay)]
+head(ans)
+#    arr_delay dep_delay
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4
+
+## alternatively
 # ans &lt;- flights[, list(arr_delay, dep_delay)]</code></pre>
 <ul>
 <li>Оберните обе колонки в <code>.()</code> или <code>list()</code>. Вот и все.</li>
@@ -300,14 +303,14 @@ head(ans)</code></pre>
 <div id="--arr_delay--dep_delay-----delay_arr--delay_dep." class="section level4">
 <h4>- Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code> <em>и</em> переименовать их в <code>delay_arr</code> и <code>delay_dep</code>.</h4>
 <pre class="r"><code>ans &lt;- flights[, .(delay_arr = arr_delay, delay_dep = dep_delay)]
-head(ans)</code></pre>
-<pre><code>##    delay_arr delay_dep
-## 1:        13        14
-## 2:        13        -3
-## 3:         9         2
-## 4:       -26        -8
-## 5:         1         2
-## 6:         0         4</code></pre>
+head(ans)
+#    delay_arr delay_dep
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4</code></pre>
 <p>Вот и все.</p>
 </div>
 </div>
@@ -316,8 +319,8 @@ head(ans)</code></pre>
 <div id="-----delay-0" class="section level4">
 <h4>– сколько рейсов имели общую задержку (delay) &lt; 0?</h4>
 <pre class="r"><code>ans &lt;- flights[, sum((arr_delay + dep_delay) &lt; 0)]
-ans</code></pre>
-<pre><code>## [1] 141814</code></pre>
+ans
+# [1] 141814</code></pre>
 </div>
 <div id="--" class="section level4">
 <h4>Что здесь происходит?</h4>
@@ -332,9 +335,9 @@ ans</code></pre>
 <h4>- Рассчитать среднюю задержку прибытия и отлета для всех рейсов с начальной точкой (аэропортом) “JFK” за июнь.</h4>
 <pre class="r"><code>ans &lt;- flights[origin == &quot;JFK&quot; &amp; month == 6L, 
                .(m_arr=mean(arr_delay), m_dep=mean(dep_delay))]
-ans</code></pre>
-<pre><code>##       m_arr    m_dep
-## 1: 5.839349 9.807884</code></pre>
+ans
+#       m_arr    m_dep
+# 1: 5.839349 9.807884</code></pre>
 <ul>
 <li><p>Мы сперва выбрали строки в <code>i</code>, найдя индексы, для которых значение <code>origin</code> равно “JFK”, а значение <code>month</code> равно 6. В этот момент мы <em>не выбрали</em> часть целой таблицы <em>data.table</em>, соответствующую этим строкам.</p></li>
 <li><p>Теперь мы смотрим на <code>j</code> и видим, что это выражение использует только два столбца. И мы должны рассчитать их средние значения <code>mean()</code>. Поэтому мы выбираем только столбцы с соответствующими строками и рассчитываем <code>mean()</code>.</p></li>
@@ -344,8 +347,8 @@ ans</code></pre>
 <div id="------2014-.---jfk--" class="section level4">
 <h4>- Как много вылетов было сделано в 2014 г. из аэропорта “JFK” за июнь?</h4>
 <pre class="r"><code>ans &lt;- flights[origin == &quot;JFK&quot; &amp; month == 6L, length(dest)]
-ans</code></pre>
-<pre><code>## [1] 8422</code></pre>
+ans
+# [1] 8422</code></pre>
 <p>Функция <code>length()</code> требует передачи ей аргумента. Нам нужно лишь рассчитать количество строк в поднаборе. На самом деле, вы могли бы использовать любой столбец в качестве аргумента <code>length()</code>.</p>
 <p>Этот тип операций встречается довольно часто, особенно в процессе группировки, как мы увидим в следующем разделе. <em>data.table</em> предоставляет для этого <em>специальный символ</em> <code>.N</code>.</p>
 </div>
@@ -354,11 +357,11 @@ ans</code></pre>
 <p><code>.N</code> является специальной встроенной переменной, которая содержит число наблюдений в данной группе. Это особенно полезно в сочетании с <code>by</code>, как мы увидим в следующем разделе. При отсутствии оперции группировки просто возвращает количество строк в поднаборе.</p>
 <p>Так что теперь мы можем выполнить эту задачу с помощью <code>.N</code> следующим образом:</p>
 <pre class="r"><code>ans &lt;- flights[origin == &quot;JFK&quot; &amp; month == 6L, .N]
-ans</code></pre>
-<pre><code>## [1] 8422</code></pre>
+ans
+# [1] 8422</code></pre>
 <ul>
 <li><p>Еще раз: вы выбираем поднабор в <code>i</code> для получения индексов строк, для которых значение <code>origin</code> равно “JFK”, а значение <code>month</code> равно 6.</p></li>
-<li><p>Мы вилим, что <code>j</code> использует только <code>.N</code>и никаких столбцов. Поэтому весь поднабор на “материализовался”. Мы просто вернули число строк в поднаборе (которое является всего лишь длиной индекса строк).</p></li>
+<li><p>Мы видим, что <code>j</code> использует только <code>.N</code>и никаких столбцов. Поэтому весь поднабор на “материализовался”. Мы просто вернули число строк в поднаборе (которое является всего лишь длиной индекса строк).</p></li>
 <li><p>Обратите внимание, что мы не обернули <code>.N</code> в <code>list()</code> или в <code>.()</code>, поэтому возвращен вектор.</p></li>
 </ul>
 <p>Мы могли бы выполнить ту же операцию при помощи <code>nrow(flights[origin == &quot;JFK&quot; &amp; month == 6L])</code>. Тем не менее, это привело бы сначала к выбору поднабора всей таблицы <em>data.table</em> для соответствующих индексов строк в <code>i</code>, <em>а затем</em> возврату числа строк при помощи <code>nrow()</code>, что является ненужным и неэффективным. Мы подробно рассмотрим этот и другие аспекты оптимизации в виньетке “data.table design”.</p>
@@ -370,33 +373,34 @@ ans</code></pre>
 <div id="--arr_delay--dep_delay---data.frame." class="section level4">
 <h4>– Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code>, как в <em>data.frame</em>.</h4>
 <pre class="r"><code>ans &lt;- flights[, c(&quot;arr_delay&quot;, &quot;dep_delay&quot;), with=FALSE]
-head(ans)</code></pre>
-<pre><code>##    arr_delay dep_delay
-## 1:        13        14
-## 2:        13        -3
-## 3:         9         2
-## 4:       -26        -8
-## 5:         1         2
-## 6:         0         4</code></pre>
+head(ans)
+#    arr_delay dep_delay
+# 1:        13        14
+# 2:        13        -3
+# 3:         9         2
+# 4:       -26        -8
+# 5:         1         2
+# 6:         0         4</code></pre>
 <p>Этот аргумент назват <code>with</code>, как функция R <code>with()</code>, из-за подобной функциональности. Предположим, у вас есть <em>data.frame</em> <code>DF</code>, и вы хотите выбрать все строки, для которых <code>x &gt; 1</code>.</p>
 <pre class="r"><code>DF = data.frame(x = c(1,1,1,2,2,3,3,3), y = 1:8)
 
 ## (1) normal way
-DF[DF$x &gt; 1, ] # data.frame needs that ',' as well</code></pre>
-<pre><code>##   x y
-## 4 2 4
-## 5 2 5
-## 6 3 6
-## 7 3 7
-## 8 3 8</code></pre>
-<pre class="r"><code>## (2) using with
-DF[with(DF, x &gt; 1), ]</code></pre>
-<pre><code>##   x y
-## 4 2 4
-## 5 2 5
-## 6 3 6
-## 7 3 7
-## 8 3 8</code></pre>
+DF[DF$x &gt; 1, ] # data.frame needs that ',' as well
+#   x y
+# 4 2 4
+# 5 2 5
+# 6 3 6
+# 7 3 7
+# 8 3 8
+
+## (2) using with
+DF[with(DF, x &gt; 1), ]
+#   x y
+# 4 2 4
+# 5 2 5
+# 6 3 6
+# 7 3 7
+# 8 3 8</code></pre>
 <ul>
 <li>Использование <code>with()</code> в (2) позволяет использовать столбец <code>x</code> в <code>DF</code> как переменную.</li>
 </ul>
