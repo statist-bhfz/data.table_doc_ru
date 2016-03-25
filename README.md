@@ -1,4 +1,4 @@
-﻿# Перевод документации по dplyr
+﻿# Перевод документации по data.table
 
 Данный репозиторий содержит переводы 4 виньеток по пакету 
 [data.table](https://github.com/Rdatatable/data.table):
