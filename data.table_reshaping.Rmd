@@ -108,7 +108,7 @@ str(DT.m1)
 
 * `melt` сохраняет атрибуты столбца в возвращаемом результате.
 
-#### - Назвать столбцы `ariable` и `value` соответственно `child` и `dob`. 
+#### - Назвать столбцы `variable` и `value` соответственно `child` и `dob`. 
 
 ```{r}
 DT.m1 = melt(DT, measure.vars = c("dob_child1", "dob_child2", "dob_child3"), 
