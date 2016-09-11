@@ -11,5 +11,6 @@
 
 [Efficient reshaping using data.tables](https://github.com/statist-bhfz/data.table_doc_ru/blob/master/data.table_reshaping.Rmd) 
 
+[Secondary indices and auto indexing](https://github.com/statist-bhfz/data.table_doc_ru/blob/master/data.table_second_ind.Rmd) 
 
 Полезное дополнение: [data.table cheat sheet](https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf)
