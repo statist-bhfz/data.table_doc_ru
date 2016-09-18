@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Руководство по data.table</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация.">
+  <meta name="generator" content="bookdown 0.1.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Руководство по data.table" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Руководство по data.table" />
+  
+  <meta name="twitter:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+<meta name="author" content="Андрей Огурцов">
+
+<meta name="date" content="2016-09-12">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="02_data.table_keys.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html"><i class="fa fa-check"></i><b>1</b> Введение в data.table</a><ul>
+<li class="chapter" data-level="1.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.1"><i class="fa fa-check"></i><b>1.1</b> Анализ данных с data.table</a></li>
+<li class="chapter" data-level="1.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.2"><i class="fa fa-check"></i><b>1.2</b> Данные</a></li>
+<li class="chapter" data-level="1.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.3"><i class="fa fa-check"></i><b>1.3</b> Введение</a></li>
+<li class="chapter" data-level="1.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4"><i class="fa fa-check"></i><b>1.4</b> 1. Основы</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.1"><i class="fa fa-check"></i><b>1.4.1</b> a) Что такое <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.2"><i class="fa fa-check"></i><b>1.4.2</b> b) Общий вид - каким образом реализованы улучшения <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c----i"><i class="fa fa-check"></i><b>1.4.3</b> c) Выбор строк в <code id="ch1.4.3">i</code></a></li>
+<li class="chapter" data-level="1.4.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d----j"><i class="fa fa-check"></i><b>1.4.4</b> d) Выбор столбцов в <code id="ch1.4.4">j</code></a></li>
+<li class="chapter" data-level="1.4.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e-----j"><i class="fa fa-check"></i><b>1.4.5</b> e) Вычислить или <em>выполнить</em> в <code id="ch1.4.5">j</code></a></li>
+<li class="chapter" data-level="1.4.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f---i----j"><i class="fa fa-check"></i><b>1.4.6</b> f) Выбрать в <code>i</code> <em>и</em> выполнить в <code id="ch1.4.6">j</code></a></li>
+<li class="chapter" data-level="1.4.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g------------j---data.frame"><i class="fa fa-check"></i><b>1.4.7</b> g) Отлично! Но как я могу ссылаться на столбцы по именам в <code>j</code> (как в <em>data.frame</em>)?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 2. Агрегирования</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#a----by"><i class="fa fa-check"></i><b>1.5.1</b> a) Группировка с использованием <code>by</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#b-keyby"><i class="fa fa-check"></i><b>1.5.2</b> b) keyby</a></li>
+<li class="chapter" data-level="1.5.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c-"><i class="fa fa-check"></i><b>1.5.3</b> c) Цепочки</a></li>
+<li class="chapter" data-level="1.5.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d---by"><i class="fa fa-check"></i><b>1.5.4</b> d) Выражения в <code>by</code></a></li>
+<li class="chapter" data-level="1.5.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e----j---.sd"><i class="fa fa-check"></i><b>1.5.5</b> e) Множество столбцов в <code>j</code> - <code>.SD</code></a></li>
+<li class="chapter" data-level="1.5.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f--.sd---"><i class="fa fa-check"></i><b>1.5.6</b> f) Поднабор <code>.SD</code> для каждой группы:</a></li>
+<li class="chapter" data-level="1.5.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g---j--"><i class="fa fa-check"></i><b>1.5.7</b> g) Зачем делать <code>j</code> настолько гибким?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> Резюме</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-i"><i class="fa fa-check"></i><b>1.6.1</b> Использование <code>i</code>:</a></li>
+<li class="chapter" data-level="1.6.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-j"><i class="fa fa-check"></i><b>1.6.2</b> Использование <code>j</code>:</a></li>
+<li class="chapter" data-level="1.6.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-by"><i class="fa fa-check"></i><b>1.6.3</b> Использование <code>by</code>:</a></li>
+<li class="chapter" data-level="1.6.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#--"><i class="fa fa-check"></i><b>1.6.4</b> И запомните совет:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html"><i class="fa fa-check"></i><b>2</b> Ключи и создание поднаборов на основе быстрого бинарного поиска</a><ul>
+<li class="chapter" data-level="2.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> Данные</a></li>
+<li class="chapter" data-level="2.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> Введение</a></li>
+<li class="chapter" data-level="2.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 1. Ключи</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.3.1</b> a) Что такое <em>ключ</em>?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--------data.table"><i class="fa fa-check"></i><b>2.3.2</b> b) Установка, получение и использование ключей в таблице <em>data.table</em></a></li>
+<li class="chapter" data-level="2.3.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c----"><i class="fa fa-check"></i><b>2.3.3</b> c) Ключи и множественные столбцы</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---j--by"><i class="fa fa-check"></i><b>2.4</b> 2. Комбинирование ключей с <code>j</code> и <code>by</code></a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---j"><i class="fa fa-check"></i><b>2.4.1</b> a) Выбор в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--"><i class="fa fa-check"></i><b>2.4.2</b> b) Цепочки операций</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c-----j"><i class="fa fa-check"></i><b>2.4.3</b> c) Вычислить или <em>выполнить</em> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#d--------j"><i class="fa fa-check"></i><b>2.4.4</b> d) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#e----by"><i class="fa fa-check"></i><b>2.4.5</b> e) Агрегирование с использованием <code>by</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#----mult--nomatch"><i class="fa fa-check"></i><b>2.5</b> 3. Дополнительные аргументы - <code>mult</code> и <code>nomatch</code></a><ul>
+<li class="chapter" data-level="2.5.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a--mult"><i class="fa fa-check"></i><b>2.5.1</b> a) Аргумент <code>mult</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--nomatch"><i class="fa fa-check"></i><b>2.5.2</b> b) Аргумент <code>nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#------"><i class="fa fa-check"></i><b>2.6</b> 4. Бинарный поиск в сравнении со сканированием вектора</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.6.1</b> a) Производительность бинарного поиска</a></li>
+<li class="chapter" data-level="2.6.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b-----data.table-----"><i class="fa fa-check"></i><b>2.6.2</b> b) Почему использование ключей в <em>data.table</em> приводит к молниеносному созданию поднаборов?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#-1"><i class="fa fa-check"></i><b>2.7</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html"><i class="fa fa-check"></i><b>3</b> Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.1"><i class="fa fa-check"></i><b>3.1</b> Данные</a></li>
+<li class="chapter" data-level="3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2"><i class="fa fa-check"></i><b>3.2</b> Введение</a></li>
+<li class="chapter" data-level="3.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3"><i class="fa fa-check"></i><b>3.3</b> 1. Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> a) Бэкграунд</a></li>
+<li class="chapter" data-level="3.3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b-"><i class="fa fa-check"></i><b>3.3.2</b> b) Оператор <code id="ch3.3.2">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#add_del"><i class="fa fa-check"></i><b>3.4</b> 2. Добавление/обновление/удаление столбцов <em>по ссылке</em></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.1"><i class="fa fa-check"></i><b>3.4.1</b> a) Добавление столбцов по ссылке</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.2"><i class="fa fa-check"></i><b>3.4.2</b> b) Обновление некоторых строк в столбцах по ссылке - <em>частичное присваивание</em> по ссылке</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.3"><i class="fa fa-check"></i><b>3.4.3</b> c) Удаление столбца по ссылке</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#d------by"><i class="fa fa-check"></i><b>3.4.4</b> d) <code>:=</code> вместе с группировкой при помощи <code id="ch3.2.4">by</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#e---"><i class="fa fa-check"></i><b>3.4.5</b> e) Множественные столбцы и <code id="ch3.2.5">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#-copy"><i class="fa fa-check"></i><b>3.5</b> 3 <code>:=</code> и <code id="eq_copy">copy()</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.5.1</b> a) Использование оператора <code>:=</code> ради его побочного эффекта</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b--copy"><i class="fa fa-check"></i><b>3.5.2</b> b) Функция <code id="fun_copy">copy()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.4"><i class="fa fa-check"></i><b>3.6</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html"><i class="fa fa-check"></i><b>4</b> Эффективное переформатирование данных при помощи data.table</a><ul>
+<li class="chapter" data-level="4.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.1"><i class="fa fa-check"></i><b>4.1</b> Данные</a></li>
+<li class="chapter" data-level="4.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.2"><i class="fa fa-check"></i><b>4.2</b> Введение</a></li>
+<li class="chapter" data-level="4.3" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3"><i class="fa fa-check"></i><b>4.3</b> 1. Базовая функциональность</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> a) <code>melt</code>ing таблиц <em>data.tables</em> (переформатирование из “широкого” формата в “длинный”)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> b) <code>cast</code>ing таблиц <em>data.tables</em> (переформатирование из “длинного” формата в “широкий”)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#---meltdcast"><i class="fa fa-check"></i><b>4.4</b> 2. Ограничения базового подхода <code id="ch4.4">melt/dcast</code></a></li>
+<li class="chapter" data-level="4.5" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.5"><i class="fa fa-check"></i><b>4.5</b> 3. Расширенная (новая) функциональность</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#a---melt"><i class="fa fa-check"></i><b>4.5.1</b> a) Расширенная функция <code id="ch4.5.1">melt</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#b---dcast"><i class="fa fa-check"></i><b>4.5.2</b> b) Расширенная функция <code id="ch4.5.2">dcast</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---"><i class="fa fa-check"></i><b>5</b> Вторичные индексы и автоиндексирование</a><ul>
+<li class="chapter" data-level="5.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html"><i class="fa fa-check"></i><b>5.1</b> Данные</a></li>
+<li class="chapter" data-level="5.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.2"><i class="fa fa-check"></i><b>5.2</b> Введение</a></li>
+<li class="chapter" data-level="5.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3"><i class="fa fa-check"></i><b>5.3</b> 1. Вторичные индексы</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> a) Что такое вторичные индексы?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> b) Установка и получение вторичных индексов</a></li>
+<li class="chapter" data-level="5.3.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> c) Почему нам нужны вторичные индексы?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4"><i class="fa fa-check"></i><b>5.4</b> 2. Быстрое создание поднаборов с использованием аргумента <code>on</code> и вторичных индексов</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#a-----i"><i class="fa fa-check"></i><b>5.4.1</b> a) Быстрое создание поднаборов в <code id="ch5.4.1">i</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#b---j"><i class="fa fa-check"></i><b>5.4.2</b> b) Выбор в <code id="ch5.4.2">j</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> c) Объединение в цепочку</a></li>
+<li class="chapter" data-level="5.4.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#d-----j"><i class="fa fa-check"></i><b>5.4.4</b> d) Вычислить или <em>выполнить</em> в <code id="ch5.4.4">j</code></a></li>
+<li class="chapter" data-level="5.4.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#e--------j"><i class="fa fa-check"></i><b>5.4.5</b> e) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code id="ch5.4.5">j</code></a></li>
+<li class="chapter" data-level="5.4.6" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#f----by"><i class="fa fa-check"></i><b>5.4.6</b> f) Агрегирование с использованием <code id="ch5.4.6">by</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#g--mult"><i class="fa fa-check"></i><b>5.4.7</b> g) Аргумент <code id="ch5.4.7">mult</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#h--nomatch"><i class="fa fa-check"></i><b>5.4.8</b> h) Аргумент <code id="ch5.4.8">nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.5"><i class="fa fa-check"></i><b>5.5</b> 3. Автоиндексирование</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Руководство по data.table</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch1" class="section level1">
+<h1><span class="header-section-number">1</span> Введение в data.table</h1>
+<p>Эта виньетка представляет собой введение в синтаксис <em>data.table</em>, его общий вид, способы создания поднаборов строк (<em>subset</em>), выбора и вычисления колонок (<em>select</em>, <em>compute</em>), агрегирования по группам (<em>by group</em>). Знакомство с базовой структурой данных <em>data.frame</em> является полезным, но не обязательным.</p>
+<div id="ch1.1" class="section level2">
+<h2><span class="header-section-number">1.1</span> Анализ данных с data.table</h2>
+<p>Все операции манипулирования данными, такие как <em>subset</em>, <em>group</em>, <em>update</em>, <em>join</em> и др., по сути взаимосвязаны. С учетом этого, вместе они обеспечивают:</p>
+<ul>
+<li><p>краткий и согласованный синтаксис независимо от набора операций, которые вы хотели бы выполнить для достижения вашей конечной цели.</p></li>
+<li><p>плавное выполнение анализа без когнитивной нагрузки, связанной с помещением каждой операции в отдельную функцию из набора доступных функций для выполнения анализа.</p></li>
+<li><p>автоматическая и эффективная внутренняя оптимизация за счет точного знания, какие данные нужны для каждой операции, что делает вычисления очень быстрыми и экономно расходующими память.</p></li>
+</ul>
+<p>Вкратце, если вы заинтересованы в радикальном сокращении программного кода и времени вычислений, то этот пакет для вас. Философия, которой следует <em>data.table</em>, делает это возможным. Наша цель состоит в иллюстрации этого в серии виньеток.</p>
+</div>
+<div id="ch1.2" class="section level2">
+<h2><span class="header-section-number">1.2</span> Данные</h2>
+<p>В этой виньетке мы используем набор данных <a href="https://github.com/arunsrinivasan/flights/wiki/NYC-Flights-2014-data">NYC-flights14</a>. Он содержит данные о времени полетов от <a href="http://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236">Bureau of Transporation Statistics</a> для всех рейсов из аэропортов Нью-Йорка в 2014 г. (по аналогии с <a href="https://github.com/hadley/nycflights13">nycflights13</a>). Данные доступны только с января по октябрь 2014 г.</p>
+<p>Мы можем использовать быструю функцию для чтения <code>fread</code> из <em>data.table</em> для непосредственной загрузки набора данных <em>flights</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/wiki/arunsrinivasan/flights/NYCflights14/flights14.csv&quot;</span>)
+flights
+<span class="co">#         year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight</span>
+<span class="co">#      1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1</span>
+<span class="co">#      2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3</span>
+<span class="co">#      3: 2014     1   1     1902         2     2224         9         0      AA  N327AA     21</span>
+<span class="co">#      4: 2014     1   1      722        -8     1014       -26         0      AA  N3EHAA     29</span>
+<span class="co">#      5: 2014     1   1     1347         2     1706         1         0      AA  N319AA    117</span>
+<span class="co">#     ---                                                                                      </span>
+<span class="co"># 253312: 2014    10  31     1459         1     1747       -30         0      UA  N23708   1744</span>
+<span class="co"># 253313: 2014    10  31      854        -5     1147       -14         0      UA  N33132   1758</span>
+<span class="co"># 253314: 2014    10  31     1102        -8     1311        16         0      MQ  N827MQ   3591</span>
+<span class="co"># 253315: 2014    10  31     1106        -4     1325        15         0      MQ  N511MQ   3592</span>
+<span class="co"># 253316: 2014    10  31      824        -5     1045         1         0      MQ  N813MQ   3599</span>
+<span class="co">#         origin dest air_time distance hour min</span>
+<span class="co">#      1:    JFK  LAX      359     2475    9  14</span>
+<span class="co">#      2:    JFK  LAX      363     2475   11  57</span>
+<span class="co">#      3:    JFK  LAX      351     2475   19   2</span>
+<span class="co">#      4:    LGA  PBI      157     1035    7  22</span>
+<span class="co">#      5:    JFK  LAX      350     2475   13  47</span>
+<span class="co">#     ---                                       </span>
+<span class="co"># 253312:    LGA  IAH      201     1416   14  59</span>
+<span class="co"># 253313:    EWR  IAH      189     1400    8  54</span>
+<span class="co"># 253314:    LGA  RDU       83      431   11   2</span>
+<span class="co"># 253315:    LGA  DTW       75      502   11   6</span>
+<span class="co"># 253316:    LGA  SDF      110      659    8  24</span>
+<span class="kw">dim</span>(flights)
+<span class="co"># [1] 253316     17</span></code></pre></div>
+<p>Так как мы будем использовать этот набор данных во всех виньетках, может быть, лучше скачать файл один раз и затем загружать его с диска.</p>
+</div>
+<div id="ch1.3" class="section level2">
+<h2><span class="header-section-number">1.3</span> Введение</h2>
+<p>В этой виньетке мы:</p>
+<ol style="list-style-type: decimal">
+<li><p>начнем с основ - что такое пакет <em>data.table</em>, его общий вид, способы выделения поднаборов строк, выбор и вычисление колонок</p></li>
+<li><p>затем перейдем к выполнению агрегирования данных по группам.</p></li>
+</ol>
+</div>
+<div id="ch1.4" class="section level2">
+<h2><span class="header-section-number">1.4</span> 1. Основы</h2>
+<div id="ch1.4.1" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> a) Что такое <em>data.table</em>?</h3>
+<p><em>data.table</em> является пакетом, обеспечивающим <strong>улучшенную версию</strong> таблиц данных <em>data.frames</em>. В разделе “Данные” мы уже создали таблицу <em>data.table</em> при помощи <code>fread()</code>. Мы также можем создать таблицу, используя функцию <code>data.table()</code>. Пример:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT =<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">ID =</span> <span class="kw">c</span>(<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="dt">a =</span> <span class="dv">1</span>:<span class="dv">6</span>, <span class="dt">b =</span> <span class="dv">7</span>:<span class="dv">12</span>, <span class="dt">c=</span><span class="dv">13</span>:<span class="dv">18</span>)
+DT
+<span class="co">#    ID a  b  c</span>
+<span class="co"># 1:  b 1  7 13</span>
+<span class="co"># 2:  b 2  8 14</span>
+<span class="co"># 3:  b 3  9 15</span>
+<span class="co"># 4:  a 4 10 16</span>
+<span class="co"># 5:  a 5 11 17</span>
+<span class="co"># 6:  c 6 12 18</span>
+<span class="kw">class</span>(DT$ID)
+<span class="co"># [1] &quot;character&quot;</span></code></pre></div>
+<p>Вы также можете конвертировать существующие объекты в <em>data.table</em>, используя <code>as.data.table()</code>.</p>
+<div id="ch1.4.1.1" class="section level4">
+<h4><span class="header-section-number">1.4.1.1</span> Обратите внимание, что:</h4>
+<ul>
+<li><p>В отличие от <em>data.frames</em>, столбцы символьного типа по умолчанию <em>никогда</em> не конвертируются в факторы (<code>factor</code>).</p></li>
+<li><p>Номера строк выводятся вместе с <code>:</code> для их визуального отделения от первого столбца.</p></li>
+<li><p>Когда количество строк для вывода превышает значение глобального параметра <code>datatable.print.nrows</code> (по умолчанию оно равно 100), автоматически выводятся только первые 5 и последние 5 строк (как можно видеть в разделе “Данные”).</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getOption</span>(<span class="st">&quot;datatable.print.nrows&quot;</span>)
+<span class="co"># [1] 100</span></code></pre></div>
+<ul>
+<li><em>data.table</em> никогда не устанавливает имена строк (<em>row names</em>). Почему - мы увидим в виньетке “Keys and fast binary search based subset”.</li>
+</ul>
+</div>
+</div>
+<div id="ch1.4.2" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> b) Общий вид - каким образом реализованы улучшения <em>data.table</em>?</h3>
+<p>По сравнению с <em>data.frame</em>, мы можете сделать <em>гораздо больше</em>, чем выбор строк и столбцов в таблице при помощи <code>[ ... ]</code>. Для понимания этого посмотрим на общий вид синтаксиса <em>data.table</em>, как показано ниже:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[i, j, by]
+
+##   R:      i                 j        by
+## SQL:  where   select | update  group by</code></pre></div>
+<p>Пользователи с опытом использования SQL могут сразу понять этот синтаксис.</p>
+<div id="ch1.4.2.2" class="section level4">
+<h4><span class="header-section-number">1.4.2.1</span> Как прочитать это (вслух):</h4>
+<p>Взять <code>DT</code>, выбрать строки при помощи <code>i</code>, затем вычислить <code>j</code>, сгруппировав по <code>by</code>.</p>
+<p>Давайте начнем с рассмотрения <code>i</code> и <code>j</code> - выбора строк и операций над столбцами.</p>
+</div>
+</div>
+<div id="c----i" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> c) Выбор строк в <code id="ch1.4.3">i</code></h3>
+<div id="ch1.4.3.1" class="section level4">
+<h4><span class="header-section-number">1.4.3.1</span> - Выбрать все рейсы с начальной точкой (аэропортом) “JFK” за июнь.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[origin ==<span class="st"> &quot;JFK&quot;</span> &amp;<span class="st"> </span>month ==<span class="st"> </span>6L]
+<span class="kw">head</span>(ans)
+<span class="co">#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin</span>
+<span class="co"># 1: 2014     6   1      851        -9     1205        -5         0      AA  N787AA      1    JFK</span>
+<span class="co"># 2: 2014     6   1     1220       -10     1522       -13         0      AA  N795AA      3    JFK</span>
+<span class="co"># 3: 2014     6   1      718        18     1014        -1         0      AA  N784AA      9    JFK</span>
+<span class="co"># 4: 2014     6   1     1024        -6     1314       -16         0      AA  N791AA     19    JFK</span>
+<span class="co"># 5: 2014     6   1     1841        -4     2125       -45         0      AA  N790AA     21    JFK</span>
+<span class="co"># 6: 2014     6   1     1454        -6     1757       -23         0      AA  N785AA    117    JFK</span>
+<span class="co">#    dest air_time distance hour min</span>
+<span class="co"># 1:  LAX      324     2475    8  51</span>
+<span class="co"># 2:  LAX      329     2475   12  20</span>
+<span class="co"># 3:  LAX      326     2475    7  18</span>
+<span class="co"># 4:  LAX      320     2475   10  24</span>
+<span class="co"># 5:  LAX      326     2475   18  41</span>
+<span class="co"># 6:  LAX      329     2475   14  54</span></code></pre></div>
+<ul>
+<li><p>В таблице <em>data.table</em> к столбцам можно обращаться, как <em>если бы они были переменными</em>. Таким образом, мы просто обратились к <code>dest</code> (<code>origin</code> в примере выше - прим. пер.) и <code>month</code> как к переменным. Нам не нужно каждый раз добавлять префикс <code>flights$</code>. Тем не менее, использование <code>flights$dest</code> и <code>flights$month</code> будет нормально работать.</p></li>
+<li><p>Были рассчитаны <em>индексы строк</em>, удовлетворяющих условию <code>origin == &quot;JFK&quot; &amp; month == 6L</code>, и, поскольку больше ничего делать не нужно, <em>data.table</em> просто возвратил все столбцы <code>flights</code> в соответствии с этими <em>индексами строк</em>.</p></li>
+<li><p>Запятая после условия также не требуется в составе <code>i</code>. Но <code>flights[dest == &quot;JFK&quot; &amp; month == 6L, ]</code> также будет нормально работать. В <em>data.frames</em>, тем не менее, запятая обязательна.</p></li>
+</ul>
+</div>
+<div id="ch1.4.3.2" class="section level4">
+<h4><span class="header-section-number">1.4.3.2</span> - Выбрать первые две строки из таблицы <code>flights</code>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[<span class="dv">1</span>:<span class="dv">2</span>]
+ans
+<span class="co">#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin</span>
+<span class="co"># 1: 2014     1   1      914        14     1238        13         0      AA  N338AA      1    JFK</span>
+<span class="co"># 2: 2014     1   1     1157        -3     1523        13         0      AA  N335AA      3    JFK</span>
+<span class="co">#    dest air_time distance hour min</span>
+<span class="co"># 1:  LAX      359     2475    9  14</span>
+<span class="co"># 2:  LAX      363     2475   11  57</span></code></pre></div>
+<ul>
+<li>В этом случае условия нет. Индексы строк уже предоставлены в составе <code>i</code>. Поэтому мы возвращаем <em>data.table</em> со всеми столбцами из <code>flights</code> для этих индексов строк.</li>
+</ul>
+</div>
+<div id="ch1.4.3.3" class="section level4">
+<h4><span class="header-section-number">1.4.3.3</span> - Упорядочить <code>flights</code> сначала по столбцу <code>origin</code> в порядке возрастания, а затем по <code>dest</code> в порядке убывания.</h4>
+<p>Мы можем использовать для этого базовую функцию R <code>order()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[<span class="kw">order</span>(origin, -dest)]
+<span class="kw">head</span>(ans)
+<span class="co">#    year month day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin</span>
+<span class="co"># 1: 2014     1   5      836         6     1151        49         0      EV  N12175   4419    EWR</span>
+<span class="co"># 2: 2014     1   6      833         7     1111        13         0      EV  N24128   4419    EWR</span>
+<span class="co"># 3: 2014     1   7      811        -6     1035       -13         0      EV  N12142   4419    EWR</span>
+<span class="co"># 4: 2014     1   8      810        -7     1036       -12         0      EV  N11193   4419    EWR</span>
+<span class="co"># 5: 2014     1   9      833        16     1055         7         0      EV  N14198   4419    EWR</span>
+<span class="co"># 6: 2014     1  13      923        66     1154        66         0      EV  N12157   4419    EWR</span>
+<span class="co">#    dest air_time distance hour min</span>
+<span class="co"># 1:  XNA      195     1131    8  36</span>
+<span class="co"># 2:  XNA      190     1131    8  33</span>
+<span class="co"># 3:  XNA      179     1131    8  11</span>
+<span class="co"># 4:  XNA      184     1131    8  10</span>
+<span class="co"># 5:  XNA      181     1131    8  33</span>
+<span class="co"># 6:  XNA      188     1131    9  23</span></code></pre></div>
+</div>
+<div id="ch1.4.3.4" class="section level4">
+<h4><span class="header-section-number">1.4.3.4</span> Функция <code>order()</code> является внутренне оптимизированной</h4>
+<ul>
+<li>Мы можем использовать “-” перед именем столбца в таблице <em>data.table</em> для сортировки в порядке убывания.</li>
+<li>Кроме того, <code>order(...)</code> в таблице <em>data.table</em> использует внутренний способ упорядочивания <code>forder()</code>, который гораздо быстрее, чем <code>base::order</code>. Вот небольшой пример, чтобы проиллюстрировать разницу.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odt =<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">col=</span><span class="kw">sample</span>(<span class="fl">1e7</span>))
+(t1 &lt;-<span class="st"> </span><span class="kw">system.time</span>(ans1 &lt;-<span class="st"> </span>odt[base::<span class="kw">order</span>(col)]))  ## uses order from base R
+<span class="co">#    user  system elapsed </span>
+<span class="co">#   8.610   0.056   8.708</span>
+(t2 &lt;-<span class="st"> </span><span class="kw">system.time</span>(ans2 &lt;-<span class="st"> </span>odt[<span class="kw">order</span>(col)]))        ## uses data.table&#39;s forder
+<span class="co">#    user  system elapsed </span>
+<span class="co">#   0.526   0.024   0.553</span>
+(<span class="kw">identical</span>(ans1, ans2))
+<span class="co"># [1] TRUE</span></code></pre></div>
+<p>Ускорение составило <strong>~16x</strong>. Мы обсудим быстрое упорядочивание в виньетке “data.table internals”.</p>
+<ul>
+<li>Таким образом, вы можете улучшить производительность, используя хорошо знакомые функции.</li>
+</ul>
+</div>
+</div>
+<div id="d----j" class="section level3">
+<h3><span class="header-section-number">1.4.4</span> d) Выбор столбцов в <code id="ch1.4.4">j</code></h3>
+<div id="ch1.4.4.1" class="section level4">
+<h4><span class="header-section-number">1.4.4.1</span> - Выбрать столбец <code>arr_delay</code>, но вернуть как <em>вектор</em>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, arr_delay]
+<span class="kw">head</span>(ans)
+<span class="co"># [1]  13  13   9 -26   1   0</span></code></pre></div>
+<ul>
+<li><p>Поскольку можно обращаться к столбцам, как если бы они были переменными в таблице, мы напрямую обратились к <em>переменным</em>, которые хотим выбрать. Поскольку нам нужны <em>все строки</em>, мы просто пропустили <code>i</code>.</p></li>
+<li><p>Были возвращены <em>все</em> строки для столбца <code>arr_delay</code>.</p></li>
+</ul>
+</div>
+<div id="ch1.4.4.2" class="section level4">
+<h4><span class="header-section-number">1.4.4.2</span> - Выбрать столбец <code>arr_delay</code>, но вернуть как <em>data.table</em>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, <span class="kw">list</span>(arr_delay)]
+<span class="kw">head</span>(ans)
+<span class="co">#    arr_delay</span>
+<span class="co"># 1:        13</span>
+<span class="co"># 2:        13</span>
+<span class="co"># 3:         9</span>
+<span class="co"># 4:       -26</span>
+<span class="co"># 5:         1</span>
+<span class="co"># 6:         0</span></code></pre></div>
+<ul>
+<li><p>Мы обернули переменные (имена столбцов) вызовом <code>list()</code>, что гарантирует возврат объекта <em>data.table</em>. В случае отдельного имени столбца, не обернутого в <code>list()</code>, вместо этого возвращается вектор, как было показано в предыдущем примере.</p></li>
+<li><p><em>data.table</em> также позволяет использовать <code>.()</code>. Это <em>псевдоним</em> (alias) для <code>list()</code>. Используйте тот или иной вариант в зависимости от своих предпочтений.</p></li>
+</ul>
+<p>Далее мы продолжим использовать <code>.()</code>.</p>
+<p><em>data.tables</em> (и <em>data.frames</em>) внутри являются списками со столбцами равной длины и с атрибутом класса. Разрешение <code>j</code> возвращать список позволяет конвертировать и возвращать <em>data.table</em> очень эффективно.</p>
+</div>
+<div id="ch1.4.4.3" class="section level4">
+<h4><span class="header-section-number">1.4.4.3</span> Совет</h4>
+<p>Поскольку <code>j-выражение</code> возвращает список, каждый элемент списка будет сконвертирован в столбец итоговой таблицы <em>data.table</em>. Это делает <code>j</code> допольно мощным средством, как мы вскоре увидим.</p>
+</div>
+<div id="ch1.4.4.4" class="section level4">
+<h4><span class="header-section-number">1.4.4.4</span> - Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, .(arr_delay, dep_delay)]
+<span class="kw">head</span>(ans)
+<span class="co">#    arr_delay dep_delay</span>
+<span class="co"># 1:        13        14</span>
+<span class="co"># 2:        13        -3</span>
+<span class="co"># 3:         9         2</span>
+<span class="co"># 4:       -26        -8</span>
+<span class="co"># 5:         1         2</span>
+<span class="co"># 6:         0         4</span>
+
+## alternatively
+<span class="co"># ans &lt;- flights[, list(arr_delay, dep_delay)]</span></code></pre></div>
+<ul>
+<li>Оберните обе колонки в <code>.()</code> или <code>list()</code>. Вот и все.</li>
+</ul>
+</div>
+<div id="ch1.4.4.5" class="section level4">
+<h4><span class="header-section-number">1.4.4.5</span> - Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code> <em>и</em> переименовать их в <code>delay_arr</code> и <code>delay_dep</code>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, .(<span class="dt">delay_arr =</span> arr_delay, <span class="dt">delay_dep =</span> dep_delay)]
+<span class="kw">head</span>(ans)
+<span class="co">#    delay_arr delay_dep</span>
+<span class="co"># 1:        13        14</span>
+<span class="co"># 2:        13        -3</span>
+<span class="co"># 3:         9         2</span>
+<span class="co"># 4:       -26        -8</span>
+<span class="co"># 5:         1         2</span>
+<span class="co"># 6:         0         4</span></code></pre></div>
+<p>Вот и все.</p>
+</div>
+</div>
+<div id="e-----j" class="section level3">
+<h3><span class="header-section-number">1.4.5</span> e) Вычислить или <em>выполнить</em> в <code id="ch1.4.5">j</code></h3>
+<div id="ch1.4.5.1" class="section level4">
+<h4><span class="header-section-number">1.4.5.1</span> – сколько рейсов имели общую задержку (delay) &lt; 0?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, <span class="kw">sum</span>((arr_delay +<span class="st"> </span>dep_delay) &lt;<span class="st"> </span><span class="dv">0</span>)]
+ans
+<span class="co"># [1] 141814</span></code></pre></div>
+</div>
+<div id="ch1.4.5.2" class="section level4">
+<h4><span class="header-section-number">1.4.5.2</span> Что здесь происходит?</h4>
+<ul>
+<li><code>j</code> в <em>data.table</em> может не только выбирать столбцы - этот элемент может обрабатывать <em>выражения</em>, т.е. <em>вычислять столбцы</em>. Это не удивительно, ведь к столбцам можно обращаться, как к переменным. Тогда мы должны быть способны выполнять вычисления, вызывая функции для этих переменных. И это именно то, что здесь происходит.</li>
+</ul>
+</div>
+</div>
+<div id="f---i----j" class="section level3">
+<h3><span class="header-section-number">1.4.6</span> f) Выбрать в <code>i</code> <em>и</em> выполнить в <code id="ch1.4.6">j</code></h3>
+<div id="ch1.4.6.1" class="section level4">
+<h4><span class="header-section-number">1.4.6.1</span> - Рассчитать среднюю задержку прибытия и отлета для всех рейсов с начальной точкой (аэропортом) “JFK” за июнь.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[origin ==<span class="st"> &quot;JFK&quot;</span> &amp;<span class="st"> </span>month ==<span class="st"> </span>6L, 
+               .(<span class="dt">m_arr=</span><span class="kw">mean</span>(arr_delay), <span class="dt">m_dep=</span><span class="kw">mean</span>(dep_delay))]
+ans
+<span class="co">#       m_arr    m_dep</span>
+<span class="co"># 1: 5.839349 9.807884</span></code></pre></div>
+<ul>
+<li><p>Мы сперва выбрали строки в <code>i</code>, найдя индексы, для которых значение <code>origin</code> равно “JFK”, а значение <code>month</code> равно 6. В этот момент мы <em>не выбрали</em> часть целой таблицы <em>data.table</em>, соответствующую этим строкам.</p></li>
+<li><p>Теперь мы смотрим на <code>j</code> и видим, что это выражение использует только два столбца. И мы должны рассчитать их средние значения <code>mean()</code>. Поэтому мы выбираем только столбцы с соответствующими строками и рассчитываем <code>mean()</code>.</p></li>
+</ul>
+<p>Поскольку три компонента запроса (<code>i</code>, <code>j</code> и <code>by</code>) находятся вместе внутри <code>[...]</code>, <em>data.table</em> может видеть все три и оптимизировать запрос целиком перед вычислением, а не каждый по отдельности. Следовательно, мы можем избежать выбора всего поднабора данных для большей скорости и эффективного использования памяти.</p>
+</div>
+<div id="------2014-.---jfk--" class="section level4">
+<h4><span class="header-section-number">1.4.6.2</span> - Как много рейсов было сделано в 2014 г. из аэропорта “JFK” за июнь?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[origin ==<span class="st"> &quot;JFK&quot;</span> &amp;<span class="st"> </span>month ==<span class="st"> </span>6L, <span class="kw">length</span>(dest)]
+ans
+<span class="co"># [1] 8422</span></code></pre></div>
+<p>Функция <code>length()</code> требует передачи ей аргумента. Нам нужно лишь рассчитать количество строк в поднаборе. На самом деле, вы могли бы использовать любой столбец в качестве аргумента <code>length()</code>.</p>
+<p>Этот тип операций встречается довольно часто, особенно в процессе группировки, как мы увидим в следующем разделе. <em>data.table</em> предоставляет для этого <em>специальный символ</em> <code>.N</code>.</p>
+</div>
+<div id="--.n" class="section level4">
+<h4><span class="header-section-number">1.4.6.3</span> Специальный символ <code>.N</code></h4>
+<p><code>.N</code> является специальной встроенной переменной, которая содержит число наблюдений в данной группе. Это особенно полезно в сочетании с <code>by</code>, как мы увидим в следующем разделе. При отсутствии операции группировки просто возвращает количество строк в поднаборе.</p>
+<p>Так что теперь мы можем выполнить эту задачу с помощью <code>.N</code> следующим образом:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[origin ==<span class="st"> &quot;JFK&quot;</span> &amp;<span class="st"> </span>month ==<span class="st"> </span>6L, .N]
+ans
+<span class="co"># [1] 8422</span></code></pre></div>
+<ul>
+<li><p>Еще раз: мы выбираем поднабор в <code>i</code> для получения индексов строк, для которых значение <code>origin</code> равно “JFK”, а значение <code>month</code> равно 6.</p></li>
+<li><p>Мы видим, что <code>j</code> использует только <code>.N</code>и не использует никаких столбцов. Поэтому весь поднабор не “материализовался”. Мы просто вернули число строк в поднаборе (которое является всего лишь длиной индекса строк).</p></li>
+<li><p>Обратите внимание, что мы не обернули <code>.N</code> в <code>list()</code> или в <code>.()</code>, поэтому возвращен вектор.</p></li>
+</ul>
+<p>Мы могли бы выполнить ту же операцию при помощи <code>nrow(flights[origin == &quot;JFK&quot; &amp; month == 6L])</code>. Тем не менее, это привело бы сначала к выбору поднабора всей таблицы <em>data.table</em> для соответствующих индексов строк в <code>i</code>, <em>а затем</em> возврату числа строк при помощи <code>nrow()</code>, что является ненужным и неэффективным. Мы подробно рассмотрим этот и другие аспекты оптимизации в виньетке “data.table design”.</p>
+</div>
+</div>
+<div id="g------------j---data.frame" class="section level3">
+<h3><span class="header-section-number">1.4.7</span> g) Отлично! Но как я могу ссылаться на столбцы по именам в <code>j</code> (как в <em>data.frame</em>)?</h3>
+<p>Вы можете ссылаться на имена столбцов в стиле <em>data.frame</em>, используя <code>with = FALSE</code> (таким же образом можно передавать номера столбцов - прим. пер.).</p>
+<div id="--arr_delay--dep_delay---data.frame." class="section level4">
+<h4><span class="header-section-number">1.4.7.1</span> – Выбрать столбцы <code>arr_delay</code> и <code>dep_delay</code>, как в <em>data.frame</em>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, <span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>), with=<span class="ot">FALSE</span>]
+<span class="kw">head</span>(ans)
+<span class="co">#    arr_delay dep_delay</span>
+<span class="co"># 1:        13        14</span>
+<span class="co"># 2:        13        -3</span>
+<span class="co"># 3:         9         2</span>
+<span class="co"># 4:       -26        -8</span>
+<span class="co"># 5:         1         2</span>
+<span class="co"># 6:         0         4</span></code></pre></div>
+<p>Этот аргумент назван <code>with</code>, как функция R <code>with()</code>, из-за подобной функциональности. Предположим, у вас есть <em>data.frame</em> <code>DF</code>, и вы хотите выбрать все строки, для которых <code>x &gt; 1</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DF =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>), <span class="dt">y =</span> <span class="dv">1</span>:<span class="dv">8</span>)
+
+## (1) normal way
+DF[DF$x &gt;<span class="st"> </span><span class="dv">1</span>, ] <span class="co"># data.frame needs that &#39;,&#39; as well</span>
+<span class="co">#   x y</span>
+<span class="co"># 4 2 4</span>
+<span class="co"># 5 2 5</span>
+<span class="co"># 6 3 6</span>
+<span class="co"># 7 3 7</span>
+<span class="co"># 8 3 8</span>
+
+## (2) using with
+DF[<span class="kw">with</span>(DF, x &gt;<span class="st"> </span><span class="dv">1</span>), ]
+<span class="co">#   x y</span>
+<span class="co"># 4 2 4</span>
+<span class="co"># 5 2 5</span>
+<span class="co"># 6 3 6</span>
+<span class="co"># 7 3 7</span>
+<span class="co"># 8 3 8</span></code></pre></div>
+<ul>
+<li>Использование <code>with()</code> в (2) позволяет использовать столбец <code>x</code> в <code>DF</code> как переменную.</li>
+</ul>
+<p>Отсюда и название аргумента в <em>data.table</em>. Установка <code>with=FALSE</code> отключает возможность ссылаться на столбцы как на переменные, тем самым восстанавливая “режим <em>data.frame</em> по умолчанию”.</p>
+<ul>
+<li>Мы также можем исключать столбцы при помощи <code>-</code> или <code>!</code>. Например:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## not run
+
+<span class="co"># returns all columns except arr_delay and dep_delay</span>
+ans &lt;-<span class="st"> </span>flights[, !<span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>), with=<span class="ot">FALSE</span>]
+<span class="co"># or</span>
+ans &lt;-<span class="st"> </span>flights[, -<span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>), with=<span class="ot">FALSE</span>]</code></pre></div>
+<ul>
+<li>Начиная с v1.9.5+, мы также можем выбирать с указанием начального и конечного имен столбцов, например, <code>year:day</code> выберет первые три столбца.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## not run
+
+<span class="co"># returns year,month and day</span>
+ans &lt;-<span class="st"> </span>flights[, year:day, with=<span class="ot">FALSE</span>]
+<span class="co"># returns day, month and year</span>
+ans &lt;-<span class="st"> </span>flights[, day:year, with=<span class="ot">FALSE</span>]
+<span class="co"># returns all columns except year, month and day</span>
+ans &lt;-<span class="st"> </span>flights[, -(year:day), with=<span class="ot">FALSE</span>]
+ans &lt;-<span class="st"> </span>flights[, !(year:day), with=<span class="ot">FALSE</span>]</code></pre></div>
+<p>Это особенно удобно при работе в интерактивном режиме.</p>
+<p><code>with = TRUE</code> установлено по умолчанию в <em>data.table</em>, потому что мы можем сделать гораздо больше, позволяя <code>j</code> обрабатывать выражения - особенно в комбинации с <code>by</code>, что мы сейчас увидим.</p>
+</div>
+</div>
+</div>
+<div id="section-1.5" class="section level2">
+<h2><span class="header-section-number">1.5</span> 2. Агрегирования</h2>
+<p>Мы уже видели общую форму <code>i</code> и <code>j</code> из <em>data.table</em> в предыдущем разделе. В этом разделе мы увидим, как они могут сочетаться с <code>by</code> для выполнения операций <em>по группам</em>. Давайте рассмотрим несколько примеров.</p>
+<div id="a----by" class="section level3">
+<h3><span class="header-section-number">1.5.1</span> a) Группировка с использованием <code>by</code></h3>
+<div id="---------" class="section level4">
+<h4><span class="header-section-number">1.5.1.1</span> - Как мы можем получить количество рейсов, соответствующее каждому аэропорту отправления?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, .(.N), by=.(origin)]
+ans
+<span class="co">#    origin     N</span>
+<span class="co"># 1:    JFK 81483</span>
+<span class="co"># 2:    LGA 84433</span>
+<span class="co"># 3:    EWR 87400</span>
+
+## or equivalently using a character vector in &#39;by&#39;
+<span class="co"># ans &lt;- flights[, .(.N), by=&quot;origin&quot;]</span></code></pre></div>
+<ul>
+<li><p>Мы знаем, что <code>.N</code> является специальной переменной, содержащей количество строк в данной группе. Группировка по <code>origin</code> позволяет получить количество строк, <code>.N</code>, для каждой группы.</p></li>
+<li><p>Выполнив <code>head(flights)</code>, вы увидите, что аэропорты идут в последовательности “JFK”, “LGA” и “EWR”. Исходная последовательность группирующих переменных сохраняется в результате.</p></li>
+<li><p>Так как мы не указали в <code>j</code> имя для вовращаемого столбца, он был автоматически назван <code>N</code> из-за распознавания специального символа <code>.N</code>.</p></li>
+<li><p><code>by</code> также принимает символьный вектор из имен столбцов. Это особенно полезно для программ, содержащих, например, проектирование функции со столбцами для группировки в качестве аргумента.</p></li>
+<li><p>Когда есть только один столбец или выражение в <code>j</code> и <code>by</code>, мы можем отбросить запись <code>.()</code> для удобства. Мы могли бы вместо этого выполнить:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, .N, by=origin]
+ans
+<span class="co">#    origin     N</span>
+<span class="co"># 1:    JFK 81483</span>
+<span class="co"># 2:    LGA 84433</span>
+<span class="co"># 3:    EWR 87400</span></code></pre></div>
+<p>Мы будем использовать в будущем эту удобную форму, где это применимо.</p>
+</div>
+<div id="--------------aa" class="section level4">
+<h4><span class="header-section-number">1.5.1.2</span> - Как мы можем рассчитать количество рейсов из каждого аэропорта отправления для авиаперевозчика с кодом “AA”?</h4>
+<p>Уникальный код авиаперевозчика “AA” соответствует <em>American Airlines Inc.</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, .N, by=origin]
+ans
+<span class="co">#    origin     N</span>
+<span class="co"># 1:    JFK 11923</span>
+<span class="co"># 2:    LGA 11730</span>
+<span class="co"># 3:    EWR  2649</span></code></pre></div>
+<ul>
+<li><p>Сперва мы получаем индексы строк для выражения <code>carrier == &quot;AA&quot;</code> в <code>i</code>.</p></li>
+<li><p>Используя эти индексы строк, мы получаем количество строк для группировки по <code>origin</code>. И снова никакие столбцы на самом деле здесь не “материализуются”, потому что <code>j-выражение</code> не требует наличия столбцов, для которых выполнено создание поднабора, и поэтому оно работает быстро и эффективно расходует память.</p></li>
+</ul>
+</div>
+<div id="---------origin-dest-----aa" class="section level4">
+<h4><span class="header-section-number">1.5.1.3</span> - Как мы можем получить количество рейсов для каждой пары <code>origin</code>, <code>dest</code> для авиаперевозчика с кодом “AA”?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, .N, by=.(origin,dest)]
+<span class="kw">head</span>(ans)
+<span class="co">#    origin dest    N</span>
+<span class="co"># 1:    JFK  LAX 3387</span>
+<span class="co"># 2:    LGA  PBI  245</span>
+<span class="co"># 3:    EWR  LAX   62</span>
+<span class="co"># 4:    JFK  MIA 1876</span>
+<span class="co"># 5:    JFK  SEA  298</span>
+<span class="co"># 6:    EWR  MIA  848</span>
+
+## or equivalently using a character vector in &#39;by&#39;
+<span class="co"># ans &lt;- flights[carrier == &quot;AA&quot;, .N, by=c(&quot;origin&quot;, &quot;dest&quot;)]</span></code></pre></div>
+<ul>
+<li><code>by</code> принимает несколько столбцов. Мы просто предоставляем все столбцы, по которым проводится группировка.</li>
+</ul>
+</div>
+<div id="------------origin-dest---------aa" class="section level4">
+<h4><span class="header-section-number">1.5.1.4</span> - Как мы можем получить среднюю задержку прибытия и отлета для каждой пары <code>origin</code>, <code>dest</code> в каждом месяце для для авиаперевозчика с кодом “AA”?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, 
+        .(<span class="kw">mean</span>(arr_delay), <span class="kw">mean</span>(dep_delay)), 
+        by=.(origin, dest, month)]
+ans
+<span class="co">#      origin dest month         V1         V2</span>
+<span class="co">#   1:    JFK  LAX     1   6.590361 14.2289157</span>
+<span class="co">#   2:    LGA  PBI     1  -7.758621  0.3103448</span>
+<span class="co">#   3:    EWR  LAX     1   1.366667  7.5000000</span>
+<span class="co">#   4:    JFK  MIA     1  15.720670 18.7430168</span>
+<span class="co">#   5:    JFK  SEA     1  14.357143 30.7500000</span>
+<span class="co">#  ---                                        </span>
+<span class="co"># 196:    LGA  MIA    10  -6.251799 -1.4208633</span>
+<span class="co"># 197:    JFK  MIA    10  -1.880184  6.6774194</span>
+<span class="co"># 198:    EWR  PHX    10  -3.032258 -4.2903226</span>
+<span class="co"># 199:    JFK  MCO    10 -10.048387 -1.6129032</span>
+<span class="co"># 200:    JFK  DCA    10  16.483871 15.5161290</span></code></pre></div>
+<ul>
+<li><p>Мы не задали имена столбцов в выражении <code>j</code>, они были созданы автоматически (<code>V1</code>, <code>V2</code>).</p></li>
+<li><p>И снова, обратите внимание, исходный порядок группирующих столбцов сохраняется в результате.</p></li>
+</ul>
+<p>А что, если мы хотели упорядочить результат по этим группирующим столбцам: <code>origin</code>, <code>dest</code> и <code>month</code>?</p>
+</div>
+</div>
+<div id="b-keyby" class="section level3">
+<h3><span class="header-section-number">1.5.2</span> b) keyby</h3>
+<p>Сохранение в <em>data.table</em> исходного порядка групп является преднамеренным. Есть случаи, когда сохранение оригинального порядка имеет важное значение. Но порой мы хотели бы, чтобы происходило автоматическое упорядочивание по группирующим переменным.</p>
+<div id="----------" class="section level4">
+<h4><span class="header-section-number">1.5.2.1</span> - Так как же мы можем непосредственно упорядочить по всем группирующим переменным?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, 
+        .(<span class="kw">mean</span>(arr_delay), <span class="kw">mean</span>(dep_delay)), 
+        keyby=.(origin, dest, month)]
+ans
+<span class="co">#      origin dest month         V1         V2</span>
+<span class="co">#   1:    EWR  DFW     1   6.427673 10.0125786</span>
+<span class="co">#   2:    EWR  DFW     2  10.536765 11.3455882</span>
+<span class="co">#   3:    EWR  DFW     3  12.865031  8.0797546</span>
+<span class="co">#   4:    EWR  DFW     4  17.792683 12.9207317</span>
+<span class="co">#   5:    EWR  DFW     5  18.487805 18.6829268</span>
+<span class="co">#  ---                                        </span>
+<span class="co"># 196:    LGA  PBI     1  -7.758621  0.3103448</span>
+<span class="co"># 197:    LGA  PBI     2  -7.865385  2.4038462</span>
+<span class="co"># 198:    LGA  PBI     3  -5.754098  3.0327869</span>
+<span class="co"># 199:    LGA  PBI     4 -13.966667 -4.7333333</span>
+<span class="co"># 200:    LGA  PBI     5 -10.357143 -6.8571429</span></code></pre></div>
+<ul>
+<li>Все, что мы сделали, это заменили <code>by</code> на <code>keyby</code>. Это автоматически упорядочило результаты по группирующим переменным в порядке возрастания. Обратите внимание, что <code>keyby()</code> применяется после выполнения операции, т.е. для рассчитанного результата.</li>
+</ul>
+<p><strong>Ключи</strong>: На самом деле <code>keyby</code> делает несколько больше, чем просто выполняет упорядочивание. Эта функция также задает <em>ключ</em> после упорядочивания путем установки <em>атрибута</em> под названием <code>sorted</code>. Но мы узнаем больше о ключах <code>keys</code> в следующей виньетке.</p>
+<p>В настоящий момент вы знаете, как использовать <code>keyby</code> для автоматического упорядочивания столбцов, заданных в <code>by</code>.</p>
+</div>
+</div>
+<div id="c-" class="section level3">
+<h3><span class="header-section-number">1.5.3</span> c) Цепочки</h3>
+<p>Давайте вновь рассмотрим задачу получения количество рейсов для каждой пары <code>origin</code>, <code>dest</code> для авиаперевозчика с кодом “AA”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, .N, by =<span class="st"> </span>.(origin, dest)]</code></pre></div>
+<div id="----ans---origin-------dest----" class="section level4">
+<h4><span class="header-section-number">1.5.3.1</span> - Как мы можем упорядочить <code>ans</code>, используя столбец <code>origin</code> в порядке по возрастанию и столбец <code>dest</code> в порядке по убыванию?</h4>
+<p>Мы можем хранить промежуточный результат в переменной, а затем использовать <code>order(origin, -dest)</code> для этой переменной. Это кажется довольно простым.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>ans[<span class="kw">order</span>(origin, -dest)]
+<span class="kw">head</span>(ans)
+<span class="co">#    origin dest    N</span>
+<span class="co"># 1:    EWR  PHX  121</span>
+<span class="co"># 2:    EWR  MIA  848</span>
+<span class="co"># 3:    EWR  LAX   62</span>
+<span class="co"># 4:    EWR  DFW 1618</span>
+<span class="co"># 5:    JFK  STT  229</span>
+<span class="co"># 6:    JFK  SJU  690</span></code></pre></div>
+<ul>
+<li><p>Напомним, что мы можем использовать “-” перед названием столбца внутри <code>order()</code> в таблице <em>data.table</em>. Это возможно благодаря внутренней оптимизации запросов <em>data.table</em>.</p></li>
+<li><p>Также напомним, что <code>order(...)</code> в таблице <em>data.table</em> автоматически оптимизирована для использования быстрого внутреннего способа упорядочивания <code>forder()</code>. Таким образом, вы можете продолжать использовать уже знакомые базовые функции R без ущерба для скорости или эффективности использования памяти, предлагаемых data.table. Мы рассмотрим этот вопрос более подробно в виньетке “data.table internals”.</p></li>
+</ul>
+<p>Но в данном случае приходится присваивать промежуточный результат, а затем его перезаписывать. Мы можем сделать лучше и избежать этого промежуточного присваивания переменной при помощи цепочечных выражений (<code>chaining</code>) .</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[carrier ==<span class="st"> &quot;AA&quot;</span>, .N, by=.(origin, dest)][<span class="kw">order</span>(origin, -dest)]
+<span class="kw">head</span>(ans, <span class="dv">10</span>)
+<span class="co">#     origin dest    N</span>
+<span class="co">#  1:    EWR  PHX  121</span>
+<span class="co">#  2:    EWR  MIA  848</span>
+<span class="co">#  3:    EWR  LAX   62</span>
+<span class="co">#  4:    EWR  DFW 1618</span>
+<span class="co">#  5:    JFK  STT  229</span>
+<span class="co">#  6:    JFK  SJU  690</span>
+<span class="co">#  7:    JFK  SFO 1312</span>
+<span class="co">#  8:    JFK  SEA  298</span>
+<span class="co">#  9:    JFK  SAN  299</span>
+<span class="co"># 10:    JFK  ORD  432</span></code></pre></div>
+<ul>
+<li><p>Мы можем прикреплять выражения одно за другим, <em>формируя цепочку</em> операций, т.е. <code>DT[ ... ][ ... ][ ... ]</code>.</p></li>
+<li><p>Или же мы можем объединять их в цепочки вертикально:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[ ... 
+ ][ ... 
+ ][ ... 
+ ]</code></pre></div>
+</div>
+</div>
+<div id="d---by" class="section level3">
+<h3><span class="header-section-number">1.5.4</span> d) Выражения в <code>by</code></h3>
+<div id="--by------" class="section level4">
+<h4><span class="header-section-number">1.5.4.1</span> - Может ли <code>by</code> также принимать выражения, или только столбцы?</h4>
+<p>Да, может. Например, если мы хотим найти, сколько рейсов вылетели с опозданием, но прибыли заранее (или вовремя), или вылетели и прибыли с опозданием, и т.д…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, .N, .(dep_delay&gt;<span class="dv">0</span>, arr_delay&gt;<span class="dv">0</span>)]
+ans
+<span class="co">#    dep_delay arr_delay      N</span>
+<span class="co"># 1:      TRUE      TRUE  72836</span>
+<span class="co"># 2:     FALSE      TRUE  34583</span>
+<span class="co"># 3:     FALSE     FALSE 119304</span>
+<span class="co"># 4:      TRUE     FALSE  26593</span></code></pre></div>
+<ul>
+<li><p>Последняя строка соответствует <code>dep_delay &gt; 0 = TRUE</code> и <code>arr_delay &gt; 0 = FALSE</code>. мы можем видеть, что 26593 рейсов начались с опозданием, но прибыли заранее (или вовремя).</p></li>
+<li><p>Обратите внимание, что мы не задали никаких имен для <code>by-выражения</code>. И имена были автоматически присвоены в результате.</p></li>
+<li><p>Вы можете задать другие столбцы вместе с выражениями, например: <code>DT[, .N, by=.(a, b&gt;0)]</code>.</p></li>
+</ul>
+</div>
+</div>
+<div id="e----j---.sd" class="section level3">
+<h3><span class="header-section-number">1.5.5</span> e) Множество столбцов в <code>j</code> - <code>.SD</code></h3>
+<div id="----mean----" class="section level4">
+<h4><span class="header-section-number">1.5.5.1</span> - Можем ли мы вычислить <code>mean()</code> отдельно для каждого столбца?</h4>
+<p>Конечно, нецелесообразно вводить <code>mean(myCol)</code> для каждого столбца. Что, если <code>mean()</code> нужно рассчитать для 100 столбцов?</p>
+<p>Как мы можем сделать это эффективно? Чтобы понять, вспомните совет - “Поскольку <code>j-выражение</code> возвращает список, каждый элемент списка будет сконвертирован в столбец итоговой таблицы <em>data.table</em>”. Предположим, что мы можем обратиться к поднабору данных для каждой группы как к переменной при группировке, затем мы можем обработать в цикле все столбцы этой переменной, используя уже знакомую базовую функцию <code>lapply()</code>. Нам не нужно изучать никаких новых функций.</p>
+</div>
+<div id="--.sd" class="section level4">
+<h4><span class="header-section-number">1.5.5.2</span> Специальный символ <code>.SD</code>:</h4>
+<p><em>data.table</em> предоставляет специальный символ под названием <code>.SD</code>. Он обозначает поднабор данных (<strong>S</strong>ubset of <strong>D</strong>ata) и сам по себе является таблицей <em>data.table</em>, содержащей данные для текущей группы, определенной с использованием <code>by</code>.</p>
+<p>Напомним, что <em>data.table</em> представляет собой список со столбцами равной длины.</p>
+<p>Давайте используем таблицу <em>data.table</em> <code>DT</code>, чтобы получить представление о том, как выглядит <code>.SD</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT
+<span class="co">#    ID a  b  c</span>
+<span class="co"># 1:  b 1  7 13</span>
+<span class="co"># 2:  b 2  8 14</span>
+<span class="co"># 3:  b 3  9 15</span>
+<span class="co"># 4:  a 4 10 16</span>
+<span class="co"># 5:  a 5 11 17</span>
+<span class="co"># 6:  c 6 12 18</span>
+
+DT[, <span class="kw">print</span>(.SD), by=ID]
+<span class="co">#    a b  c</span>
+<span class="co"># 1: 1 7 13</span>
+<span class="co"># 2: 2 8 14</span>
+<span class="co"># 3: 3 9 15</span>
+<span class="co">#    a  b  c</span>
+<span class="co"># 1: 4 10 16</span>
+<span class="co"># 2: 5 11 17</span>
+<span class="co">#    a  b  c</span>
+<span class="co"># 1: 6 12 18</span>
+<span class="co"># Empty data.table (0 rows) of 1 col: ID</span></code></pre></div>
+<ul>
+<li><p><code>.SD</code> по умолчанию содержит все столбцы, кроме того, по которому выполнена группировка.</p></li>
+<li><p>Создается с сохранением исходного порядка - данные, соответствующие <code>ID = &quot;b&quot;</code>, затем <code>ID = &quot;a&quot;</code>, а затем <code>ID = &quot;c&quot;</code>.</p></li>
+</ul>
+<p>Для расчетов по множеству столбцов мы может просто использовать базовую функцию <code>lapply()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[, <span class="kw">lapply</span>(.SD, mean), by=ID]
+<span class="co">#    ID   a    b    c</span>
+<span class="co"># 1:  b 2.0  8.0 14.0</span>
+<span class="co"># 2:  a 4.5 10.5 16.5</span>
+<span class="co"># 3:  c 6.0 12.0 18.0</span></code></pre></div>
+<ul>
+<li><p><code>.SD</code> содержит строки, соответствующие столбцам <em>a</em>, <em>b</em> и <em>c</em> для этой группы. Мы рассчитываем <code>mean()</code> для каждого из этих столбцов, используя уже знакомую базовую функцию <code>lapply()</code>.</p></li>
+<li><p>Каждая группа возвращается список из трех элементов, содержащих средние значения, которые становятся столбцами итоговой таблицы <code>data.table</code>.</p></li>
+<li><p>Поскольку функция <code>lapply()</code> возвращает список, нет необходимости дополнительно заключать ее в <code>.()</code>.</p></li>
+</ul>
+<p>Мы почти справились. Осталось рассмотреть одну маленькую деталь. В нашей таблице <em>data.table</em> <code>flights</code> мы хотим рассчитать <code>mean()</code> только для двух столбцов - <code>arr_delay</code> и <code>dep_delay</code>. Но <code>.SD</code> по умолчанию содержит все столбцы, кроме группирующих переменных.</p>
+</div>
+<div id="-----------mean" class="section level4">
+<h4><span class="header-section-number">1.5.5.3</span> - Как мы можем указать только те столбцы, для которых хотим рассчитать <code>mean()</code>?</h4>
+</div>
+<div id="sdcols" class="section level4">
+<h4><span class="header-section-number">1.5.5.4</span> <code>.SDcols</code></h4>
+<p>Использование аргумента <code>.SDcols</code>. Он принимает имена или индексы столбцов. Например, <code>.SDcols = c(&quot;arr_delay&quot;, &quot;dep_delay&quot;)</code> гарантирует, что <code>.SD</code> содержит только эти два столбца для каждой группы.</p>
+<p>Так же как в разделе про <code>with = FALSE</code>, вы можете указывать столбцы, которые нужно удалить, вместо столбцов, которые нужно оставить, при помощи <code>-</code> или <code>!</code>, а также выбирать идущие подряд столбцы как <code>colA:colB</code> или исключать их как <code>!(colA:colB)</code> или <code>-(colA:colB)</code>.</p>
+<p>Теперь давайте попробуем использовать <code>SD</code> вместе с <code>.SDcols</code>, чтобы получить <code>mean()</code> для столбцов <code>arr_delay</code> и <code>dep_delay</code>, сгруппированных по <code>origin</code>, <code>dest</code> и <code>month</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[carrier ==<span class="st"> &quot;AA&quot;</span>,                     ## Only on trips with carrier &quot;AA&quot;
+        <span class="kw">lapply</span>(.SD, mean),                   ## compute the mean
+        by=.(origin, dest, month),           ## for every &#39;origin,dest,month&#39;
+        .SDcols=<span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>)] ## for just those specified in .SDcols
+<span class="co">#      origin dest month  arr_delay  dep_delay</span>
+<span class="co">#   1:    JFK  LAX     1   6.590361 14.2289157</span>
+<span class="co">#   2:    LGA  PBI     1  -7.758621  0.3103448</span>
+<span class="co">#   3:    EWR  LAX     1   1.366667  7.5000000</span>
+<span class="co">#   4:    JFK  MIA     1  15.720670 18.7430168</span>
+<span class="co">#   5:    JFK  SEA     1  14.357143 30.7500000</span>
+<span class="co">#  ---                                        </span>
+<span class="co"># 196:    LGA  MIA    10  -6.251799 -1.4208633</span>
+<span class="co"># 197:    JFK  MIA    10  -1.880184  6.6774194</span>
+<span class="co"># 198:    EWR  PHX    10  -3.032258 -4.2903226</span>
+<span class="co"># 199:    JFK  MCO    10 -10.048387 -1.6129032</span>
+<span class="co"># 200:    JFK  DCA    10  16.483871 15.5161290</span></code></pre></div>
+</div>
+</div>
+<div id="f--.sd---" class="section level3">
+<h3><span class="header-section-number">1.5.6</span> f) Поднабор <code>.SD</code> для каждой группы:</h3>
+<div id="---------month" class="section level4">
+<h4><span class="header-section-number">1.5.6.1</span> – Как мы можем вернуть первые две строки для каждого <code>month</code>?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans &lt;-<span class="st"> </span>flights[, <span class="kw">head</span>(.SD, <span class="dv">2</span>), by=month]
+<span class="kw">head</span>(ans)
+<span class="co">#    month year day dep_time dep_delay arr_time arr_delay cancelled carrier tailnum flight origin</span>
+<span class="co"># 1:     1 2014   1      914        14     1238        13         0      AA  N338AA      1    JFK</span>
+<span class="co"># 2:     1 2014   1     1157        -3     1523        13         0      AA  N335AA      3    JFK</span>
+<span class="co"># 3:     2 2014   1      859        -1     1226         1         0      AA  N783AA      1    JFK</span>
+<span class="co"># 4:     2 2014   1     1155        -5     1528         3         0      AA  N784AA      3    JFK</span>
+<span class="co"># 5:     3 2014   1      849       -11     1306        36         0      AA  N784AA      1    JFK</span>
+<span class="co"># 6:     3 2014   1     1157        -3     1529        14         0      AA  N787AA      3    JFK</span>
+<span class="co">#    dest air_time distance hour min</span>
+<span class="co"># 1:  LAX      359     2475    9  14</span>
+<span class="co"># 2:  LAX      363     2475   11  57</span>
+<span class="co"># 3:  LAX      358     2475    8  59</span>
+<span class="co"># 4:  LAX      358     2475   11  55</span>
+<span class="co"># 5:  LAX      375     2475    8  49</span>
+<span class="co"># 6:  LAX      368     2475   11  57</span></code></pre></div>
+<ul>
+<li><p><code>.SD</code> является таблицей <em>data.table</em>, содержащей все строки для данной группы. Мы просто выбираем первые две строки, как мы уже видели.</p></li>
+<li><p><code>head(.SD, 2)</code> возвращается для каждой группы первые две строки как таблицу <em>data.table</em>, которая также является списком. Поэтому нам не нужно использовать <code>.()</code>.</p></li>
+</ul>
+</div>
+</div>
+<div id="g---j--" class="section level3">
+<h3><span class="header-section-number">1.5.7</span> g) Зачем делать <code>j</code> настолько гибким?</h3>
+<p>Таким образом у нас есть единый синтаксис и возможность использования уже существующих (и знакомых) базовых функций вместо изучения новых. Для иллюстрации давайте использовать созданную в начале таблицу <em>data.table</em> <code>DF</code>.</p>
+<div id="-----a-and-b-----id" class="section level4">
+<h4><span class="header-section-number">1.5.7.1</span> – Как мы можем соединить столбцы <code>a</code> and <code>b</code> для каждой группы в <code>ID</code>?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[, .(<span class="dt">val =</span> <span class="kw">c</span>(a,b)), by=ID]
+<span class="co">#     ID val</span>
+<span class="co">#  1:  b   1</span>
+<span class="co">#  2:  b   2</span>
+<span class="co">#  3:  b   3</span>
+<span class="co">#  4:  b   7</span>
+<span class="co">#  5:  b   8</span>
+<span class="co">#  6:  b   9</span>
+<span class="co">#  7:  a   4</span>
+<span class="co">#  8:  a   5</span>
+<span class="co">#  9:  a  10</span>
+<span class="co"># 10:  a  11</span>
+<span class="co"># 11:  c   6</span>
+<span class="co"># 12:  c  12</span></code></pre></div>
+<ul>
+<li>Вот и все. Не нужно никакого специального синтаксиса. Все, что нужно - это знание базовой функции <code>c()</code>, которая соединяет векторы, и совет про списки выше (<code>j-выражение</code> возвращает список).</li>
+</ul>
+</div>
+<div id="----------a--b-----" class="section level4">
+<h4><span class="header-section-number">1.5.7.2</span> - Что, если бы мы хотели получить все значения соединенных столбцов <code>a</code> и <code>b</code>, но в виде столбца-списка?</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[, .(<span class="dt">val =</span> <span class="kw">list</span>(<span class="kw">c</span>(a,b))), by=ID]
+<span class="co">#    ID         val</span>
+<span class="co"># 1:  b 1,2,3,7,8,9</span>
+<span class="co"># 2:  a  4, 5,10,11</span>
+<span class="co"># 3:  c        6,12</span></code></pre></div>
+<ul>
+<li><p>Тут мы сперва соединили значения при помощи <code>c(a,b)</code> для каждой группы и обернули их вызовом <code>list()</code>. Таким образом, для каждой группы мы верули список из всех соединенных значений.</p></li>
+<li><p>Заметим, что запятые служат только для отображения. Столбец-список может содержать любой объект в каждой ячейке, и в этом примере каждая ячейка является вектором, и некоторые ячейки содержат более длинные векторы, чем другие.</p></li>
+</ul>
+<p>Как только вы начнете использовать <code>j</code>, вы поймете, насколько мощным может быть этот синтаксис. Очень полезный способ, чтобы понять это - поиграть с данными при помощи функции <code>print()</code>.</p>
+<p>Например:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## (1) look at the difference between
+DT[, <span class="kw">print</span>(<span class="kw">c</span>(a,b)), by=ID]
+<span class="co"># [1] 1 2 3 7 8 9</span>
+<span class="co"># [1]  4  5 10 11</span>
+<span class="co"># [1]  6 12</span>
+<span class="co"># Empty data.table (0 rows) of 1 col: ID</span>
+
+## (2) and
+DT[, <span class="kw">print</span>(<span class="kw">list</span>(<span class="kw">c</span>(a,b))), by=ID]
+<span class="co"># [[1]]</span>
+<span class="co"># [1] 1 2 3 7 8 9</span>
+<span class="co"># </span>
+<span class="co"># [[1]]</span>
+<span class="co"># [1]  4  5 10 11</span>
+<span class="co"># </span>
+<span class="co"># [[1]]</span>
+<span class="co"># [1]  6 12</span>
+<span class="co"># Empty data.table (0 rows) of 1 col: ID</span></code></pre></div>
+<p>В примере (1) для для каждой группы возвращается вектор с длиной = 6, 4, 2. Однако (2) возвращает список длиной 1 для каждой группы с первым элементом, содержащим векторы с длиной 6, 4, 2. Поэтому (1) в результате имеет длину <code>6+4+2=12</code>, в то время как (2) возвращает <code>1+1+1=3</code>.</p>
+</div>
+</div>
+</div>
+<div id="section-1.6" class="section level2">
+<h2><span class="header-section-number">1.6</span> Резюме</h2>
+<p>Общая форма синтаксиса <em>data.table</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT[i, j, by]</code></pre></div>
+<div id="-i" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> Использование <code>i</code>:</h3>
+<ul>
+<li><p>мы можем выбирать строки, как в <em>data.frame</em> - за исключением того, что не нужно постоянно использовать <code>DT$1</code>, так как столбцы в <em>data.table</em> ведут себя так, как если бы они были переменными.</p></li>
+<li><p>Мы также можем упорядочивать <em>data.table</em>, используя функцию <code>order()</code>, которая использует для большей производительности быструю внутреннюю реализацию упорядочивания в <em>data.table</em>.</p></li>
+</ul>
+<p>Мы можем делать гораздо больше в <code>i</code> при помощи установки ключей в <em>data.table</em>, что позволяет выполнять молниеносные выборки поднаборов и объединения. Мы это увидим в виньетках “Keys and fast binary search based subsets” и “Joins and rolling joins”.</p>
+</div>
+<div id="-j" class="section level3">
+<h3><span class="header-section-number">1.6.2</span> Использование <code>j</code>:</h3>
+<ol style="list-style-type: decimal">
+<li><p>Выбор столбцов в стиле <em>data.table</em>: <code>DT[, .(colA, colB)]</code>.</p></li>
+<li><p>Выбор столбцов в стиле <em>data.frame</em>: <code>DT[, c(&quot;colA&quot;, &quot;colB&quot;), with=FALSE]</code>.</p></li>
+<li><p>Вычисления на основе столбцов: <code>DT[, .(sum(colA), mean(colB))]</code>.</p></li>
+<li><p>Указание имен, если нужно: <code>DT[, .(sA =sum(colA), mB = mean(colB))]</code>.</p></li>
+<li><p>Комбинация с <code>i</code>: <code>DT[colA &gt; value, sum(colB)]</code>.</p></li>
+</ol>
+</div>
+<div id="-by" class="section level3">
+<h3><span class="header-section-number">1.6.3</span> Использование <code>by</code>:</h3>
+<ul>
+<li><p>Используя <code>by</code>, мы можем осуществлять группировку по столбцам, указывая <em>список столбцов</em> или <em>символьный вектор с именами столбцов</em>, или даже используя <em>выражения</em>. Гибкость <code>j</code> в сочетании с <code>by</code> и <code>i</code> создает очень мощный синтаксис.</p></li>
+<li><p><code>by</code> может обрабатывать множественные столбцы, а также <em>выражения</em>.</p></li>
+<li><p>Мы можем использовать <code>keyby</code> для группирующих столбцов с целью автоматического упорядочивания результатов группировки.</p></li>
+<li><p>Мы можем использовать <code>.SD</code> и <code>.SDcols</code> в <code>j</code> для обработки множественных столбцов с использованием уже знакомых базовых функций. Вот несколько примеров:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>DT[, lapply(.SD, fun), by=., .SDcols=...]</code> - применяет <code>fun</code> ко всем столбцам, указанным в <code>.SDcols</code>, в то время как группировка по столбцам задана в <code>by</code>.</p></li>
+<li><p><code>DT[, head(.SD, 2), by=.]</code> - возвращает первые две строки для каждой группы.</p></li>
+<li><p><code>DT[col &gt; val, head(.SD, 1), by=.]</code> - комбинация <code>i</code>, <code>j</code> и <code>by</code>.</p></li>
+</ol></li>
+</ul>
+</div>
+<div id="--" class="section level3">
+<h3><span class="header-section-number">1.6.4</span> И запомните совет:</h3>
+<p>Поскольку <code>j-выражение</code> возвращает список, каждый элемент списка станет столбцом итоговой таблицы <em>data.table</em>.</p>
+<p>В следующей виньетке мы увидим, как <em>добавлять/обновлять/удалять</em> столбцы <em>по ссылке</em> и как комбинировать это с <code>i</code> и <code>by</code>.</p>
+<p>P.S. <a href="http://stackoverflow.com/questions/21421396/r-data-table-loop-subset-by-factor-and-do-lm">Очень познавательные примеры на SO</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="02_data.table_keys.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+--- 
+title: Руководство по data.table
+author: "Андрей Огурцов"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+biblio-style: apalike
+link-citations: yes
+description: "Руководство по пакету data.table: перевод виньеток, справочная иформация."
+---
+
+**Вступление**
+
+Данное руководство содержит переводы всех виньеток по пакету [data.table](https://github.com/Rdatatable/data.table/wiki). Все, кроме последней, переведены с версий от июня 2015 г.; последняя - с версии от апреля 2016 г. Переводы будут актуализироваться, также планируется добавить другие материалы.
+
+[GitHub](https://github.com/statist-bhfz/data.table_doc_ru)
+
+
+
+
+
+

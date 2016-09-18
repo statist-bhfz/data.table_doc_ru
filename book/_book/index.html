@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Руководство по data.table</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация.">
+  <meta name="generator" content="bookdown 0.1.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Руководство по data.table" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Руководство по data.table" />
+  
+  <meta name="twitter:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+<meta name="author" content="Андрей Огурцов">
+
+<meta name="date" content="2016-09-12">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="01_data.table_intro.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html"><i class="fa fa-check"></i><b>1</b> Введение в data.table</a><ul>
+<li class="chapter" data-level="1.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.1"><i class="fa fa-check"></i><b>1.1</b> Анализ данных с data.table</a></li>
+<li class="chapter" data-level="1.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.2"><i class="fa fa-check"></i><b>1.2</b> Данные</a></li>
+<li class="chapter" data-level="1.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.3"><i class="fa fa-check"></i><b>1.3</b> Введение</a></li>
+<li class="chapter" data-level="1.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4"><i class="fa fa-check"></i><b>1.4</b> 1. Основы</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.1"><i class="fa fa-check"></i><b>1.4.1</b> a) Что такое <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.2"><i class="fa fa-check"></i><b>1.4.2</b> b) Общий вид - каким образом реализованы улучшения <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c----i"><i class="fa fa-check"></i><b>1.4.3</b> c) Выбор строк в <code id="ch1.4.3">i</code></a></li>
+<li class="chapter" data-level="1.4.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d----j"><i class="fa fa-check"></i><b>1.4.4</b> d) Выбор столбцов в <code id="ch1.4.4">j</code></a></li>
+<li class="chapter" data-level="1.4.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e-----j"><i class="fa fa-check"></i><b>1.4.5</b> e) Вычислить или <em>выполнить</em> в <code id="ch1.4.5">j</code></a></li>
+<li class="chapter" data-level="1.4.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f---i----j"><i class="fa fa-check"></i><b>1.4.6</b> f) Выбрать в <code>i</code> <em>и</em> выполнить в <code id="ch1.4.6">j</code></a></li>
+<li class="chapter" data-level="1.4.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g------------j---data.frame"><i class="fa fa-check"></i><b>1.4.7</b> g) Отлично! Но как я могу ссылаться на столбцы по именам в <code>j</code> (как в <em>data.frame</em>)?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 2. Агрегирования</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#a----by"><i class="fa fa-check"></i><b>1.5.1</b> a) Группировка с использованием <code>by</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#b-keyby"><i class="fa fa-check"></i><b>1.5.2</b> b) keyby</a></li>
+<li class="chapter" data-level="1.5.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c-"><i class="fa fa-check"></i><b>1.5.3</b> c) Цепочки</a></li>
+<li class="chapter" data-level="1.5.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d---by"><i class="fa fa-check"></i><b>1.5.4</b> d) Выражения в <code>by</code></a></li>
+<li class="chapter" data-level="1.5.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e----j---.sd"><i class="fa fa-check"></i><b>1.5.5</b> e) Множество столбцов в <code>j</code> - <code>.SD</code></a></li>
+<li class="chapter" data-level="1.5.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f--.sd---"><i class="fa fa-check"></i><b>1.5.6</b> f) Поднабор <code>.SD</code> для каждой группы:</a></li>
+<li class="chapter" data-level="1.5.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g---j--"><i class="fa fa-check"></i><b>1.5.7</b> g) Зачем делать <code>j</code> настолько гибким?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> Резюме</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-i"><i class="fa fa-check"></i><b>1.6.1</b> Использование <code>i</code>:</a></li>
+<li class="chapter" data-level="1.6.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-j"><i class="fa fa-check"></i><b>1.6.2</b> Использование <code>j</code>:</a></li>
+<li class="chapter" data-level="1.6.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-by"><i class="fa fa-check"></i><b>1.6.3</b> Использование <code>by</code>:</a></li>
+<li class="chapter" data-level="1.6.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#--"><i class="fa fa-check"></i><b>1.6.4</b> И запомните совет:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html"><i class="fa fa-check"></i><b>2</b> Ключи и создание поднаборов на основе быстрого бинарного поиска</a><ul>
+<li class="chapter" data-level="2.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> Данные</a></li>
+<li class="chapter" data-level="2.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> Введение</a></li>
+<li class="chapter" data-level="2.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 1. Ключи</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.3.1</b> a) Что такое <em>ключ</em>?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--------data.table"><i class="fa fa-check"></i><b>2.3.2</b> b) Установка, получение и использование ключей в таблице <em>data.table</em></a></li>
+<li class="chapter" data-level="2.3.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c----"><i class="fa fa-check"></i><b>2.3.3</b> c) Ключи и множественные столбцы</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---j--by"><i class="fa fa-check"></i><b>2.4</b> 2. Комбинирование ключей с <code>j</code> и <code>by</code></a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---j"><i class="fa fa-check"></i><b>2.4.1</b> a) Выбор в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--"><i class="fa fa-check"></i><b>2.4.2</b> b) Цепочки операций</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c-----j"><i class="fa fa-check"></i><b>2.4.3</b> c) Вычислить или <em>выполнить</em> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#d--------j"><i class="fa fa-check"></i><b>2.4.4</b> d) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#e----by"><i class="fa fa-check"></i><b>2.4.5</b> e) Агрегирование с использованием <code>by</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#----mult--nomatch"><i class="fa fa-check"></i><b>2.5</b> 3. Дополнительные аргументы - <code>mult</code> и <code>nomatch</code></a><ul>
+<li class="chapter" data-level="2.5.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a--mult"><i class="fa fa-check"></i><b>2.5.1</b> a) Аргумент <code>mult</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--nomatch"><i class="fa fa-check"></i><b>2.5.2</b> b) Аргумент <code>nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#------"><i class="fa fa-check"></i><b>2.6</b> 4. Бинарный поиск в сравнении со сканированием вектора</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.6.1</b> a) Производительность бинарного поиска</a></li>
+<li class="chapter" data-level="2.6.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b-----data.table-----"><i class="fa fa-check"></i><b>2.6.2</b> b) Почему использование ключей в <em>data.table</em> приводит к молниеносному созданию поднаборов?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#-1"><i class="fa fa-check"></i><b>2.7</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html"><i class="fa fa-check"></i><b>3</b> Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.1"><i class="fa fa-check"></i><b>3.1</b> Данные</a></li>
+<li class="chapter" data-level="3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2"><i class="fa fa-check"></i><b>3.2</b> Введение</a></li>
+<li class="chapter" data-level="3.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3"><i class="fa fa-check"></i><b>3.3</b> 1. Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> a) Бэкграунд</a></li>
+<li class="chapter" data-level="3.3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b-"><i class="fa fa-check"></i><b>3.3.2</b> b) Оператор <code id="ch3.3.2">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#add_del"><i class="fa fa-check"></i><b>3.4</b> 2. Добавление/обновление/удаление столбцов <em>по ссылке</em></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.1"><i class="fa fa-check"></i><b>3.4.1</b> a) Добавление столбцов по ссылке</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.2"><i class="fa fa-check"></i><b>3.4.2</b> b) Обновление некоторых строк в столбцах по ссылке - <em>частичное присваивание</em> по ссылке</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.3"><i class="fa fa-check"></i><b>3.4.3</b> c) Удаление столбца по ссылке</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#d------by"><i class="fa fa-check"></i><b>3.4.4</b> d) <code>:=</code> вместе с группировкой при помощи <code id="ch3.2.4">by</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#e---"><i class="fa fa-check"></i><b>3.4.5</b> e) Множественные столбцы и <code id="ch3.2.5">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#-copy"><i class="fa fa-check"></i><b>3.5</b> 3 <code>:=</code> и <code id="eq_copy">copy()</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.5.1</b> a) Использование оператора <code>:=</code> ради его побочного эффекта</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b--copy"><i class="fa fa-check"></i><b>3.5.2</b> b) Функция <code id="fun_copy">copy()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.4"><i class="fa fa-check"></i><b>3.6</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html"><i class="fa fa-check"></i><b>4</b> Эффективное переформатирование данных при помощи data.table</a><ul>
+<li class="chapter" data-level="4.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.1"><i class="fa fa-check"></i><b>4.1</b> Данные</a></li>
+<li class="chapter" data-level="4.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.2"><i class="fa fa-check"></i><b>4.2</b> Введение</a></li>
+<li class="chapter" data-level="4.3" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3"><i class="fa fa-check"></i><b>4.3</b> 1. Базовая функциональность</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> a) <code>melt</code>ing таблиц <em>data.tables</em> (переформатирование из “широкого” формата в “длинный”)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> b) <code>cast</code>ing таблиц <em>data.tables</em> (переформатирование из “длинного” формата в “широкий”)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#---meltdcast"><i class="fa fa-check"></i><b>4.4</b> 2. Ограничения базового подхода <code id="ch4.4">melt/dcast</code></a></li>
+<li class="chapter" data-level="4.5" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.5"><i class="fa fa-check"></i><b>4.5</b> 3. Расширенная (новая) функциональность</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#a---melt"><i class="fa fa-check"></i><b>4.5.1</b> a) Расширенная функция <code id="ch4.5.1">melt</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#b---dcast"><i class="fa fa-check"></i><b>4.5.2</b> b) Расширенная функция <code id="ch4.5.2">dcast</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---"><i class="fa fa-check"></i><b>5</b> Вторичные индексы и автоиндексирование</a><ul>
+<li class="chapter" data-level="5.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html"><i class="fa fa-check"></i><b>5.1</b> Данные</a></li>
+<li class="chapter" data-level="5.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.2"><i class="fa fa-check"></i><b>5.2</b> Введение</a></li>
+<li class="chapter" data-level="5.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3"><i class="fa fa-check"></i><b>5.3</b> 1. Вторичные индексы</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> a) Что такое вторичные индексы?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> b) Установка и получение вторичных индексов</a></li>
+<li class="chapter" data-level="5.3.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> c) Почему нам нужны вторичные индексы?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4"><i class="fa fa-check"></i><b>5.4</b> 2. Быстрое создание поднаборов с использованием аргумента <code>on</code> и вторичных индексов</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#a-----i"><i class="fa fa-check"></i><b>5.4.1</b> a) Быстрое создание поднаборов в <code id="ch5.4.1">i</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#b---j"><i class="fa fa-check"></i><b>5.4.2</b> b) Выбор в <code id="ch5.4.2">j</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> c) Объединение в цепочку</a></li>
+<li class="chapter" data-level="5.4.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#d-----j"><i class="fa fa-check"></i><b>5.4.4</b> d) Вычислить или <em>выполнить</em> в <code id="ch5.4.4">j</code></a></li>
+<li class="chapter" data-level="5.4.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#e--------j"><i class="fa fa-check"></i><b>5.4.5</b> e) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code id="ch5.4.5">j</code></a></li>
+<li class="chapter" data-level="5.4.6" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#f----by"><i class="fa fa-check"></i><b>5.4.6</b> f) Агрегирование с использованием <code id="ch5.4.6">by</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#g--mult"><i class="fa fa-check"></i><b>5.4.7</b> g) Аргумент <code id="ch5.4.7">mult</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#h--nomatch"><i class="fa fa-check"></i><b>5.4.8</b> h) Аргумент <code id="ch5.4.8">nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.5"><i class="fa fa-check"></i><b>5.5</b> 3. Автоиндексирование</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Руководство по data.table</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Руководство по data.table</h1>
+<h4 class="author"><em>Андрей Огурцов</em></h4>
+<h4 class="date"><em>2016-09-12</em></h4>
+</div>
+<p><strong>Вступление</strong></p>
+<p>Данное руководство содержит переводы всех виньеток по пакету <a href="https://github.com/Rdatatable/data.table/wiki">data.table</a>. Все, кроме последней, переведены с версий от июня 2015 г.; последняя - с версии от апреля 2016 г. Переводы будут актуализироваться, также планируется добавить другие материалы.</p>
+<p><a href="https://github.com/statist-bhfz/data.table_doc_ru">GitHub</a></p>
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="01_data.table_intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

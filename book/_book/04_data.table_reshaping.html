@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Руководство по data.table</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация.">
+  <meta name="generator" content="bookdown 0.1.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Руководство по data.table" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Руководство по data.table" />
+  
+  <meta name="twitter:description" content="Руководство по пакету data.table: перевод виньеток, справочная иформация." />
+  
+
+<meta name="author" content="Андрей Огурцов">
+
+<meta name="date" content="2016-09-12">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="03_data.table_reference.html">
+<link rel="next" href="05_data.table_second_ind.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html"><i class="fa fa-check"></i><b>1</b> Введение в data.table</a><ul>
+<li class="chapter" data-level="1.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.1"><i class="fa fa-check"></i><b>1.1</b> Анализ данных с data.table</a></li>
+<li class="chapter" data-level="1.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.2"><i class="fa fa-check"></i><b>1.2</b> Данные</a></li>
+<li class="chapter" data-level="1.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.3"><i class="fa fa-check"></i><b>1.3</b> Введение</a></li>
+<li class="chapter" data-level="1.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4"><i class="fa fa-check"></i><b>1.4</b> 1. Основы</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.1"><i class="fa fa-check"></i><b>1.4.1</b> a) Что такое <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#ch1.4.2"><i class="fa fa-check"></i><b>1.4.2</b> b) Общий вид - каким образом реализованы улучшения <em>data.table</em>?</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c----i"><i class="fa fa-check"></i><b>1.4.3</b> c) Выбор строк в <code id="ch1.4.3">i</code></a></li>
+<li class="chapter" data-level="1.4.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d----j"><i class="fa fa-check"></i><b>1.4.4</b> d) Выбор столбцов в <code id="ch1.4.4">j</code></a></li>
+<li class="chapter" data-level="1.4.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e-----j"><i class="fa fa-check"></i><b>1.4.5</b> e) Вычислить или <em>выполнить</em> в <code id="ch1.4.5">j</code></a></li>
+<li class="chapter" data-level="1.4.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f---i----j"><i class="fa fa-check"></i><b>1.4.6</b> f) Выбрать в <code>i</code> <em>и</em> выполнить в <code id="ch1.4.6">j</code></a></li>
+<li class="chapter" data-level="1.4.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g------------j---data.frame"><i class="fa fa-check"></i><b>1.4.7</b> g) Отлично! Но как я могу ссылаться на столбцы по именам в <code>j</code> (как в <em>data.frame</em>)?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.5"><i class="fa fa-check"></i><b>1.5</b> 2. Агрегирования</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#a----by"><i class="fa fa-check"></i><b>1.5.1</b> a) Группировка с использованием <code>by</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#b-keyby"><i class="fa fa-check"></i><b>1.5.2</b> b) keyby</a></li>
+<li class="chapter" data-level="1.5.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#c-"><i class="fa fa-check"></i><b>1.5.3</b> c) Цепочки</a></li>
+<li class="chapter" data-level="1.5.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#d---by"><i class="fa fa-check"></i><b>1.5.4</b> d) Выражения в <code>by</code></a></li>
+<li class="chapter" data-level="1.5.5" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#e----j---.sd"><i class="fa fa-check"></i><b>1.5.5</b> e) Множество столбцов в <code>j</code> - <code>.SD</code></a></li>
+<li class="chapter" data-level="1.5.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#f--.sd---"><i class="fa fa-check"></i><b>1.5.6</b> f) Поднабор <code>.SD</code> для каждой группы:</a></li>
+<li class="chapter" data-level="1.5.7" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#g---j--"><i class="fa fa-check"></i><b>1.5.7</b> g) Зачем делать <code>j</code> настолько гибким?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> Резюме</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-i"><i class="fa fa-check"></i><b>1.6.1</b> Использование <code>i</code>:</a></li>
+<li class="chapter" data-level="1.6.2" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-j"><i class="fa fa-check"></i><b>1.6.2</b> Использование <code>j</code>:</a></li>
+<li class="chapter" data-level="1.6.3" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#-by"><i class="fa fa-check"></i><b>1.6.3</b> Использование <code>by</code>:</a></li>
+<li class="chapter" data-level="1.6.4" data-path="01_data.table_intro.html"><a href="01_data.table_intro.html#--"><i class="fa fa-check"></i><b>1.6.4</b> И запомните совет:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html"><i class="fa fa-check"></i><b>2</b> Ключи и создание поднаборов на основе быстрого бинарного поиска</a><ul>
+<li class="chapter" data-level="2.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> Данные</a></li>
+<li class="chapter" data-level="2.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> Введение</a></li>
+<li class="chapter" data-level="2.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 1. Ключи</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.3.1</b> a) Что такое <em>ключ</em>?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--------data.table"><i class="fa fa-check"></i><b>2.3.2</b> b) Установка, получение и использование ключей в таблице <em>data.table</em></a></li>
+<li class="chapter" data-level="2.3.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c----"><i class="fa fa-check"></i><b>2.3.3</b> c) Ключи и множественные столбцы</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---j--by"><i class="fa fa-check"></i><b>2.4</b> 2. Комбинирование ключей с <code>j</code> и <code>by</code></a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---j"><i class="fa fa-check"></i><b>2.4.1</b> a) Выбор в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--"><i class="fa fa-check"></i><b>2.4.2</b> b) Цепочки операций</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#c-----j"><i class="fa fa-check"></i><b>2.4.3</b> c) Вычислить или <em>выполнить</em> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.4" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#d--------j"><i class="fa fa-check"></i><b>2.4.4</b> d) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code>j</code></a></li>
+<li class="chapter" data-level="2.4.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#e----by"><i class="fa fa-check"></i><b>2.4.5</b> e) Агрегирование с использованием <code>by</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#----mult--nomatch"><i class="fa fa-check"></i><b>2.5</b> 3. Дополнительные аргументы - <code>mult</code> и <code>nomatch</code></a><ul>
+<li class="chapter" data-level="2.5.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a--mult"><i class="fa fa-check"></i><b>2.5.1</b> a) Аргумент <code>mult</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b--nomatch"><i class="fa fa-check"></i><b>2.5.2</b> b) Аргумент <code>nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#------"><i class="fa fa-check"></i><b>2.6</b> 4. Бинарный поиск в сравнении со сканированием вектора</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#a---"><i class="fa fa-check"></i><b>2.6.1</b> a) Производительность бинарного поиска</a></li>
+<li class="chapter" data-level="2.6.2" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#b-----data.table-----"><i class="fa fa-check"></i><b>2.6.2</b> b) Почему использование ключей в <em>data.table</em> приводит к молниеносному созданию поднаборов?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#-1"><i class="fa fa-check"></i><b>2.7</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html"><i class="fa fa-check"></i><b>3</b> Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.1"><i class="fa fa-check"></i><b>3.1</b> Данные</a></li>
+<li class="chapter" data-level="3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2"><i class="fa fa-check"></i><b>3.2</b> Введение</a></li>
+<li class="chapter" data-level="3.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3"><i class="fa fa-check"></i><b>3.3</b> 1. Семантика ссылок</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> a) Бэкграунд</a></li>
+<li class="chapter" data-level="3.3.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b-"><i class="fa fa-check"></i><b>3.3.2</b> b) Оператор <code id="ch3.3.2">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#add_del"><i class="fa fa-check"></i><b>3.4</b> 2. Добавление/обновление/удаление столбцов <em>по ссылке</em></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.1"><i class="fa fa-check"></i><b>3.4.1</b> a) Добавление столбцов по ссылке</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.2"><i class="fa fa-check"></i><b>3.4.2</b> b) Обновление некоторых строк в столбцах по ссылке - <em>частичное присваивание</em> по ссылке</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.2.3"><i class="fa fa-check"></i><b>3.4.3</b> c) Удаление столбца по ссылке</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#d------by"><i class="fa fa-check"></i><b>3.4.4</b> d) <code>:=</code> вместе с группировкой при помощи <code id="ch3.2.4">by</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#e---"><i class="fa fa-check"></i><b>3.4.5</b> e) Множественные столбцы и <code id="ch3.2.5">:=</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#-copy"><i class="fa fa-check"></i><b>3.5</b> 3 <code>:=</code> и <code id="eq_copy">copy()</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.3.1"><i class="fa fa-check"></i><b>3.5.1</b> a) Использование оператора <code>:=</code> ради его побочного эффекта</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#b--copy"><i class="fa fa-check"></i><b>3.5.2</b> b) Функция <code id="fun_copy">copy()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03_data.table_reference.html"><a href="03_data.table_reference.html#ch3.4"><i class="fa fa-check"></i><b>3.6</b> Резюме</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html"><i class="fa fa-check"></i><b>4</b> Эффективное переформатирование данных при помощи data.table</a><ul>
+<li class="chapter" data-level="4.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.1"><i class="fa fa-check"></i><b>4.1</b> Данные</a></li>
+<li class="chapter" data-level="4.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.2"><i class="fa fa-check"></i><b>4.2</b> Введение</a></li>
+<li class="chapter" data-level="4.3" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3"><i class="fa fa-check"></i><b>4.3</b> 1. Базовая функциональность</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> a) <code>melt</code>ing таблиц <em>data.tables</em> (переформатирование из “широкого” формата в “длинный”)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> b) <code>cast</code>ing таблиц <em>data.tables</em> (переформатирование из “длинного” формата в “широкий”)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#---meltdcast"><i class="fa fa-check"></i><b>4.4</b> 2. Ограничения базового подхода <code id="ch4.4">melt/dcast</code></a></li>
+<li class="chapter" data-level="4.5" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#ch4.5"><i class="fa fa-check"></i><b>4.5</b> 3. Расширенная (новая) функциональность</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#a---melt"><i class="fa fa-check"></i><b>4.5.1</b> a) Расширенная функция <code id="ch4.5.1">melt</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="04_data.table_reshaping.html"><a href="04_data.table_reshaping.html#b---dcast"><i class="fa fa-check"></i><b>4.5.2</b> b) Расширенная функция <code id="ch4.5.2">dcast</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="02_data.table_keys.html"><a href="02_data.table_keys.html#---"><i class="fa fa-check"></i><b>5</b> Вторичные индексы и автоиндексирование</a><ul>
+<li class="chapter" data-level="5.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html"><i class="fa fa-check"></i><b>5.1</b> Данные</a></li>
+<li class="chapter" data-level="5.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.2"><i class="fa fa-check"></i><b>5.2</b> Введение</a></li>
+<li class="chapter" data-level="5.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3"><i class="fa fa-check"></i><b>5.3</b> 1. Вторичные индексы</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> a) Что такое вторичные индексы?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> b) Установка и получение вторичных индексов</a></li>
+<li class="chapter" data-level="5.3.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.3.3"><i class="fa fa-check"></i><b>5.3.3</b> c) Почему нам нужны вторичные индексы?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4"><i class="fa fa-check"></i><b>5.4</b> 2. Быстрое создание поднаборов с использованием аргумента <code>on</code> и вторичных индексов</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#a-----i"><i class="fa fa-check"></i><b>5.4.1</b> a) Быстрое создание поднаборов в <code id="ch5.4.1">i</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#b---j"><i class="fa fa-check"></i><b>5.4.2</b> b) Выбор в <code id="ch5.4.2">j</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> c) Объединение в цепочку</a></li>
+<li class="chapter" data-level="5.4.4" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#d-----j"><i class="fa fa-check"></i><b>5.4.4</b> d) Вычислить или <em>выполнить</em> в <code id="ch5.4.4">j</code></a></li>
+<li class="chapter" data-level="5.4.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#e--------j"><i class="fa fa-check"></i><b>5.4.5</b> e) <em>Частичное присваивание</em> по ссылке с использованием <code>:=</code> в <code id="ch5.4.5">j</code></a></li>
+<li class="chapter" data-level="5.4.6" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#f----by"><i class="fa fa-check"></i><b>5.4.6</b> f) Агрегирование с использованием <code id="ch5.4.6">by</code></a></li>
+<li class="chapter" data-level="5.4.7" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#g--mult"><i class="fa fa-check"></i><b>5.4.7</b> g) Аргумент <code id="ch5.4.7">mult</code></a></li>
+<li class="chapter" data-level="5.4.8" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#h--nomatch"><i class="fa fa-check"></i><b>5.4.8</b> h) Аргумент <code id="ch5.4.8">nomatch</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="05_data.table_second_ind.html"><a href="05_data.table_second_ind.html#ch5.5"><i class="fa fa-check"></i><b>5.5</b> 3. Автоиндексирование</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Руководство по data.table</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="-----data.table" class="section level1">
+<h1><span class="header-section-number">4</span> Эффективное переформатирование данных при помощи data.table</h1>
+<p>В этой виньетке обсуждается обычное использование функций для переформатирования данных в таблицах <em>data.tables</em> <code>melt</code> (из “широкого” формата в “длинный”) и <code>dcast</code> (из “длинного” формата в широкий), а также <strong>новая расширенная функциональность</strong> для <em>множественных столбцов</em>, доступная начиная с <code>v1.9.6</code>.</p>
+<div id="ch4.1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Данные</h2>
+<p>Мы будет загружать наборы данных непосредственно в разделах.</p>
+</div>
+<div id="ch4.2" class="section level2">
+<h2><span class="header-section-number">4.2</span> Введение</h2>
+<p>Функции <code>melt</code> и <code>dcast</code> для таблиц <em>data.tables</em> являются расширениями соответствующих функций из пакета <a href="https://cran.r-project.org/web/packages/reshape2/index.html">reshape2</a>.</p>
+<p>В этой виньетке мы:</p>
+<ol style="list-style-type: decimal">
+<li><p>сперва кратко рассмотрим переформатирование таблиц <em>data.tables</em> из “широкого” формата в “длинный”, и наоборот</p></li>
+<li><p>затем рассмотрим сценарии, когда базовая функциональность становится неэффективной</p></li>
+<li><p>и, наконец, рассмотрим новые улучшения для методов <code>melt</code> и <code>dcast</code>, которые позволяют обрабатывать несколько столбцов одновременно.</p></li>
+</ol>
+<p>Расширенная функциональность соответствует философии <em>data.table</em>, состоящей в эффективном и непосредственном выполнении операций.</p>
+<div id="ch4.2.1.1" class="section level4">
+<h4><span class="header-section-number">4.2.0.1</span> Обратите внимание</h4>
+<p>Начиная с <code>v1.9.6</code>, вам не нужно загружать пакет <code>reshape2</code>, чтобы использовать функции для таблиц <em>data.tables</em>. Вам нужно только загрузить <code>data.table</code>. Если вам нужно загрузить пакет <code>reshape2</code> для манипуляций с матрицами или таблицами данных, убедитесь, что он загружается <em>перед</em> пакетом <code>data.table</code>.</p>
+</div>
+</div>
+<div id="ch4.3" class="section level2">
+<h2><span class="header-section-number">4.3</span> 1. Базовая функциональность</h2>
+<div id="ch4.3.1" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> a) <code>melt</code>ing таблиц <em>data.tables</em> (переформатирование из “широкого” формата в “длинный”)</h3>
+<p>Предположим, у нас есть искусственные данные, показанные ниже:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT =<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/wiki/Rdatatable/data.table/data/melt_default.csv&quot;</span>)
+DT 
+<span class="co">#    family_id age_mother dob_child1 dob_child2 dob_child3</span>
+<span class="co"># 1:         1         30 1998-11-26 2000-01-29         NA</span>
+<span class="co"># 2:         2         27 1996-06-22         NA         NA</span>
+<span class="co"># 3:         3         26 2002-07-11 2004-04-05 2007-09-02</span>
+<span class="co"># 4:         4         32 2004-10-10 2009-08-27 2012-07-21</span>
+<span class="co"># 5:         5         29 2000-12-05 2005-02-28         NA</span>
+## dob stands for date of birth.
+
+<span class="kw">str</span>(DT)
+<span class="co"># Classes &#39;data.table&#39; and &#39;data.frame&#39;:    5 obs. of  5 variables:</span>
+<span class="co">#  $ family_id : int  1 2 3 4 5</span>
+<span class="co">#  $ age_mother: int  30 27 26 32 29</span>
+<span class="co">#  $ dob_child1: chr  &quot;1998-11-26&quot; &quot;1996-06-22&quot; &quot;2002-07-11&quot; &quot;2004-10-10&quot; ...</span>
+<span class="co">#  $ dob_child2: chr  &quot;2000-01-29&quot; NA &quot;2004-04-05&quot; &quot;2009-08-27&quot; ...</span>
+<span class="co">#  $ dob_child3: chr  NA NA &quot;2007-09-02&quot; &quot;2012-07-21&quot; ...</span>
+<span class="co">#  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></code></pre></div>
+<div id="ch4.3.1.1" class="section level4">
+<h4><span class="header-section-number">4.3.1.1</span> - Переформатировать <code>DT</code> в <em>“длинную”</em> форму, в которой каждый <code>dob</code> является отдельным наблюдением.</h4>
+<p>Мы можем сделать это при помощи <code>melt()</code>, задав аргументы <code>id.vars</code> и <code>measure.vars</code> следующим образом:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT.m1 =<span class="st"> </span><span class="kw">melt</span>(DT, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;family_id&quot;</span>, <span class="st">&quot;age_mother&quot;</span>), 
+                <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;dob_child1&quot;</span>, <span class="st">&quot;dob_child2&quot;</span>, <span class="st">&quot;dob_child3&quot;</span>))
+DT.m1
+<span class="co">#     family_id age_mother   variable      value</span>
+<span class="co">#  1:         1         30 dob_child1 1998-11-26</span>
+<span class="co">#  2:         2         27 dob_child1 1996-06-22</span>
+<span class="co">#  3:         3         26 dob_child1 2002-07-11</span>
+<span class="co">#  4:         4         32 dob_child1 2004-10-10</span>
+<span class="co">#  5:         5         29 dob_child1 2000-12-05</span>
+<span class="co">#  6:         1         30 dob_child2 2000-01-29</span>
+<span class="co">#  7:         2         27 dob_child2         NA</span>
+<span class="co">#  8:         3         26 dob_child2 2004-04-05</span>
+<span class="co">#  9:         4         32 dob_child2 2009-08-27</span>
+<span class="co"># 10:         5         29 dob_child2 2005-02-28</span>
+<span class="co"># 11:         1         30 dob_child3         NA</span>
+<span class="co"># 12:         2         27 dob_child3         NA</span>
+<span class="co"># 13:         3         26 dob_child3 2007-09-02</span>
+<span class="co"># 14:         4         32 dob_child3 2012-07-21</span>
+<span class="co"># 15:         5         29 dob_child3         NA</span>
+<span class="kw">str</span>(DT.m1)
+<span class="co"># Classes &#39;data.table&#39; and &#39;data.frame&#39;:    15 obs. of  4 variables:</span>
+<span class="co">#  $ family_id : int  1 2 3 4 5 1 2 3 4 5 ...</span>
+<span class="co">#  $ age_mother: int  30 27 26 32 29 30 27 26 32 29 ...</span>
+<span class="co">#  $ variable  : Factor w/ 3 levels &quot;dob_child1&quot;,&quot;dob_child2&quot;,..: 1 1 1 1 1 2 2 2 2 2 ...</span>
+<span class="co">#  $ value     : chr  &quot;1998-11-26&quot; &quot;1996-06-22&quot; &quot;2002-07-11&quot; &quot;2004-10-10&quot; ...</span>
+<span class="co">#  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></code></pre></div>
+<ul>
+<li><p><code>measure.vars</code> задает набор столбцов, которые мы хотим скомбинировать.</p></li>
+<li><p>Мы также можем задать <em>индексы столбцов</em> вместо имен.</p></li>
+<li><p>По умолчанию столбец <code>variable</code> имеет тип <code>factor</code>. Присвойте аргументу <code>variable.factor</code> значение <code>FALSE</code>, если вместо этого вы хотите вернуть <em>символьный</em> вектор. Аргумент <code>variable.factor</code> доступен только в функции <code>melt</code> из пакета <code>data.table</code> и не доступен в пакете <a href="https://github.com/hadley/reshape"><code>reshape2</code></a></p></li>
+<li><p>По умолчанию, “расплавленные” столбцы автоматически названы <code>variable</code> и <code>value</code>.</p></li>
+<li><p><code>melt</code> сохраняет атрибуты столбца в возвращаемом результате.</p></li>
+</ul>
+</div>
+<div id="ch4.3.1.2" class="section level4">
+<h4><span class="header-section-number">4.3.1.2</span> - Назвать столбцы <code>variable</code> и <code>value</code> соответственно <code>child</code> и <code>dob</code>.</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT.m1 =<span class="st"> </span><span class="kw">melt</span>(DT, <span class="dt">measure.vars =</span> <span class="kw">c</span>(<span class="st">&quot;dob_child1&quot;</span>, <span class="st">&quot;dob_child2&quot;</span>, <span class="st">&quot;dob_child3&quot;</span>), 
+               <span class="dt">variable.name =</span> <span class="st">&quot;child&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;dob&quot;</span>)
+DT.m1
+<span class="co">#     family_id age_mother      child        dob</span>
+<span class="co">#  1:         1         30 dob_child1 1998-11-26</span>
+<span class="co">#  2:         2         27 dob_child1 1996-06-22</span>
+<span class="co">#  3:         3         26 dob_child1 2002-07-11</span>
+<span class="co">#  4:         4         32 dob_child1 2004-10-10</span>
+<span class="co">#  5:         5         29 dob_child1 2000-12-05</span>
+<span class="co">#  6:         1         30 dob_child2 2000-01-29</span>
+<span class="co">#  7:         2         27 dob_child2         NA</span>
+<span class="co">#  8:         3         26 dob_child2 2004-04-05</span>
+<span class="co">#  9:         4         32 dob_child2 2009-08-27</span>
+<span class="co"># 10:         5         29 dob_child2 2005-02-28</span>
+<span class="co"># 11:         1         30 dob_child3         NA</span>
+<span class="co"># 12:         2         27 dob_child3         NA</span>
+<span class="co"># 13:         3         26 dob_child3 2007-09-02</span>
+<span class="co"># 14:         4         32 dob_child3 2012-07-21</span>
+<span class="co"># 15:         5         29 dob_child3         NA</span></code></pre></div>
+<ul>
+<li><p>По умолчанию, если аргумент <code>id.vars</code> или <code>measure.vars</code> пропущен, оставшиеся столбцы <em>автоматически присваиваются</em> пропущенному аргументу.</p></li>
+<li><p>Если не задан ни аргумент <code>id.vars</code>, ни аргумент <code>measure.vars</code>, как было упомянуто в справке <code>?melt</code>, столбцы всех типов, кроме <code>numeric</code>, <code>integer</code> и <code>logical</code> присваиваются аргументу <code>id.vars</code>.</p></li>
+</ul>
+<p>Кроме того, автоматически присвоенные <code>id.vars</code> столбцы указываются в предупреждении.</p>
+</div>
+</div>
+<div id="ch4.3.2" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> b) <code>cast</code>ing таблиц <em>data.tables</em> (переформатирование из “длинного” формата в “широкий”)</h3>
+<p>В предыдущем разделе мы увидели, как перейти от “широкой” формы к “длинной”. Давайте рассмотрим обратную операцию в этом разделе.</p>
+<div id="ch4.3.2.1" class="section level4">
+<h4><span class="header-section-number">4.3.2.1</span> - Как мы можем получить обратно исходную таблицу <code>DT</code> из <code>DT.m</code>?</h4>
+<p>Т.е, мы хотели бы собрать все наблюдения для детей, соответствующих каждому показателю <code>family_id</code>, <code>age_mother</code>, в одну строку. Мы можем сделать это при помощи <code>dcast</code> следующим образом:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dcast</span>(DT.m1, family_id +<span class="st"> </span>age_mother ~<span class="st"> </span>child, <span class="dt">value.var =</span> <span class="st">&quot;dob&quot;</span>)
+<span class="co">#    family_id age_mother dob_child1 dob_child2 dob_child3</span>
+<span class="co"># 1:         1         30 1998-11-26 2000-01-29         NA</span>
+<span class="co"># 2:         2         27 1996-06-22         NA         NA</span>
+<span class="co"># 3:         3         26 2002-07-11 2004-04-05 2007-09-02</span>
+<span class="co"># 4:         4         32 2004-10-10 2009-08-27 2012-07-21</span>
+<span class="co"># 5:         5         29 2000-12-05 2005-02-28         NA</span></code></pre></div>
+<ul>
+<li><p><code>dcast</code> использует интерфейс <em>формул</em>. Переменные в <em>левой части</em> формулы представляют <em>идентификаторы</em>, а переменные в <em>правой части</em> - <em>измерения</em>.</p></li>
+<li><p><code>value.var</code> задает столбец, который заполняется при приведении к “широкому” формату.</p></li>
+<li><p><code>dcast</code> также старается сохранять атрибуты в возвращаемом результате, когда это возможно.</p></li>
+</ul>
+</div>
+<div id="ch4.3.2.2" class="section level4">
+<h4><span class="header-section-number">4.3.2.2</span> - Имея <code>DT.m</code>, как мы можем получить количество детей в каждой семье?</h4>
+<p>Вы также можете передать функцию для агрегировани в <code>dcast</code> с помощью аргумента <code>fun.aggregate</code>. Это особенно важно, когда заданная формула не идентифицирует единственное значение в каждой ячейке.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dcast</span>(DT.m1, family_id ~<span class="st"> </span>., <span class="dt">fun.agg =</span> function(x) <span class="kw">sum</span>(!<span class="kw">is.na</span>(x)), <span class="dt">value.var =</span> <span class="st">&quot;dob&quot;</span>)
+<span class="co">#    family_id .</span>
+<span class="co"># 1:         1 2</span>
+<span class="co"># 2:         2 1</span>
+<span class="co"># 3:         3 3</span>
+<span class="co"># 4:         4 3</span>
+<span class="co"># 5:         5 2</span></code></pre></div>
+<p>См. <code>?dcast</code> для других полезных аргументов и дополнительных примеров.</p>
+</div>
+</div>
+</div>
+<div id="---meltdcast" class="section level2">
+<h2><span class="header-section-number">4.4</span> 2. Ограничения базового подхода <code id="ch4.4">melt/dcast</code></h2>
+<p>До сих пор мы видели возможности <code>melt</code> и <code>dcast</code>, основанные на пакете <code>reshape2</code>, но эффективно реализованные для таблиц <em>data.tables</em> с использованием внутренней машинерии <code>data.table</code> (<em>быстрая сортировки, бинарный поиск</em> и т.д.).</p>
+<p>Тем не менее, бывают ситуации, когда мы не можем выразить требуемые операции простым способом. Например, рассмотрим таблицу <em>data.table</em>, показанную ниже:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT =<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/wiki/Rdatatable/data.table/data/melt_enhanced.csv&quot;</span>)
+DT
+<span class="co">#    family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child2 gender_child3</span>
+<span class="co"># 1:         1         30 1998-11-26 2000-01-29         NA             1             2            NA</span>
+<span class="co"># 2:         2         27 1996-06-22         NA         NA             2            NA            NA</span>
+<span class="co"># 3:         3         26 2002-07-11 2004-04-05 2007-09-02             2             2             1</span>
+<span class="co"># 4:         4         32 2004-10-10 2009-08-27 2012-07-21             1             1             1</span>
+<span class="co"># 5:         5         29 2000-12-05 2005-02-28         NA             2             1            NA</span>
+## 1 = female, 2 = male </code></pre></div>
+<p>И вы хотите скомбинировать (“слить”): столбцы <code>dob</code>; столбцы <code>gender</code>. С использованием базовой функциональности мы могли бы сделать что-нибудь подобное:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT.m1 =<span class="st"> </span><span class="kw">melt</span>(DT, <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">&quot;family_id&quot;</span>, <span class="st">&quot;age_mother&quot;</span>))
+<span class="co"># Warning in melt.data.table(DT, id = c(&quot;family_id&quot;, &quot;age_mother&quot;)): &#39;measure.vars&#39; [dob_child1,</span>
+<span class="co"># dob_child2, dob_child3, gender_child1, gender_child2, gender_child3] are not all of the same</span>
+<span class="co"># type. By order of hierarchy, the molten data value column will be of type &#39;character&#39;. All measure</span>
+<span class="co"># variables not of type &#39;character&#39; will be coerced to. Check DETAILS in ?melt.data.table for more on</span>
+<span class="co"># coercion.</span>
+DT.m1[, <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;child&quot;</span>) :<span class="er">=</span><span class="st"> </span><span class="kw">tstrsplit</span>(variable, <span class="st">&quot;_&quot;</span>, <span class="dt">fixed=</span><span class="ot">TRUE</span>)]
+DT.c1 =<span class="st"> </span><span class="kw">dcast</span>(DT.m1, family_id +<span class="st"> </span>age_mother +<span class="st"> </span>child ~<span class="st"> </span>variable, <span class="dt">value.var =</span> <span class="st">&quot;value&quot;</span>)
+DT.c1
+<span class="co">#     family_id age_mother  child        dob gender</span>
+<span class="co">#  1:         1         30 child1 1998-11-26      1</span>
+<span class="co">#  2:         1         30 child2 2000-01-29      2</span>
+<span class="co">#  3:         1         30 child3         NA     NA</span>
+<span class="co">#  4:         2         27 child1 1996-06-22      2</span>
+<span class="co">#  5:         2         27 child2         NA     NA</span>
+<span class="co">#  6:         2         27 child3         NA     NA</span>
+<span class="co">#  7:         3         26 child1 2002-07-11      2</span>
+<span class="co">#  8:         3         26 child2 2004-04-05      2</span>
+<span class="co">#  9:         3         26 child3 2007-09-02      1</span>
+<span class="co"># 10:         4         32 child1 2004-10-10      1</span>
+<span class="co"># 11:         4         32 child2 2009-08-27      1</span>
+<span class="co"># 12:         4         32 child3 2012-07-21      1</span>
+<span class="co"># 13:         5         29 child1 2000-12-05      2</span>
+<span class="co"># 14:         5         29 child2 2005-02-28      1</span>
+<span class="co"># 15:         5         29 child3         NA     NA</span>
+
+<span class="kw">str</span>(DT.c1) ## gender column is character type now!
+<span class="co"># Classes &#39;data.table&#39; and &#39;data.frame&#39;:    15 obs. of  5 variables:</span>
+<span class="co">#  $ family_id : int  1 1 1 2 2 2 3 3 3 4 ...</span>
+<span class="co">#  $ age_mother: int  30 30 30 27 27 27 26 26 26 32 ...</span>
+<span class="co">#  $ child     : chr  &quot;child1&quot; &quot;child2&quot; &quot;child3&quot; &quot;child1&quot; ...</span>
+<span class="co">#  $ dob       : chr  &quot;1998-11-26&quot; &quot;2000-01-29&quot; NA &quot;1996-06-22&quot; ...</span>
+<span class="co">#  $ gender    : chr  &quot;1&quot; &quot;2&quot; NA &quot;2&quot; ...</span>
+<span class="co">#  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt; </span>
+<span class="co">#  - attr(*, &quot;sorted&quot;)= chr  &quot;family_id&quot; &quot;age_mother&quot; &quot;child&quot;</span></code></pre></div>
+<div id="ch4.4.1.1" class="section level4">
+<h4><span class="header-section-number">4.4.0.1</span> Вопросы</h4>
+<ol style="list-style-type: decimal">
+<li>Мы хотели объединить все столбцы типа <code>dob</code>, а затем все столбцы типа <code>gender</code>. Вместо этого мы сперва объединили их все вместе, а затем разделили снова. Я думаю, легко заметить, что это весьма окольный и неэффективный путь.</li>
+</ol>
+<p>В качестве аналогии, представьте, что у вас есть шкаф с четырьма полками для одежды, и вы хотите собрать вместе одежду с полок 1 и 2 (на полку 1) и с полок 3 и 4 (на полку 3). Что мы делаем: собираем всю одежду вместе, а затем снова разделяем на полки 1 и 3!</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Объединяемые столбцы могут иметь разный тип, как в этом случае (символьный и числовой тип). При <em>“расплавлении”</em> столбцов их тип был приведен, как объясняется в предупреждении и показано в выводе <code>str(DT.c1)</code>, где <code>gender</code> был сконвертирован в <em>символьный</em> тип.</p></li>
+<li><p>Мы создаем дополнительный столбец путем разделения <code>variable</code> на два новых столбца с весьма загадочной целью. Мы делаем это для использования функции <code>dcast()</code> на следующем шаге.</p></li>
+<li><p>Наконец, мы собрали набор данных. Но дело в том, что это гораздо более вычислительно дорогостоящая операция, чем “плавление”. В частности, это требует дорогостоящего вычисления порядка переменных в формуле.</p></li>
+</ol>
+<p>На самом деле, функция <code>base::reshape</code> способна выполнить эту операция очень простым способом. Это чрезвычайно полезная и часто недооцененная функция. Вы, безусловно, должны ее испытать!</p>
+</div>
+</div>
+<div id="ch4.5" class="section level2">
+<h2><span class="header-section-number">4.5</span> 3. Расширенная (новая) функциональность</h2>
+<div id="a---melt" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> a) Расширенная функция <code id="ch4.5.1">melt</code></h3>
+<p>Поскольку мы хотим, чтобы таблицы <em>data.tables</em> выполняли эти операции быстро и эффективно, используя тот же интерфейс, мы пошли дальше и реализовали дополнительную функциональность, где мы можем применять функцию <code>melt()</code> для нескольких столбцов одновременно.</p>
+<div id="ch4.5.1.1" class="section level4">
+<h4><span class="header-section-number">4.5.1.1</span> - <code>melt()</code> для нескольких столбцов одновременно</h4>
+<p>Идея довольно проста. Мы передаем список столбцов аргументу <code>measure.vars</code>, где каждый элемент списка содержит столбцы, которые должны быть объединены.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colA =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;dob_child&quot;</span>, <span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
+colB =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;gender_child&quot;</span>, <span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
+DT.m2 =<span class="st"> </span><span class="kw">melt</span>(DT, <span class="dt">measure =</span> <span class="kw">list</span>(colA, colB), <span class="dt">value.name =</span> <span class="kw">c</span>(<span class="st">&quot;dob&quot;</span>, <span class="st">&quot;gender&quot;</span>))
+DT.m2
+<span class="co">#     family_id age_mother variable        dob gender</span>
+<span class="co">#  1:         1         30        1 1998-11-26      1</span>
+<span class="co">#  2:         2         27        1 1996-06-22      2</span>
+<span class="co">#  3:         3         26        1 2002-07-11      2</span>
+<span class="co">#  4:         4         32        1 2004-10-10      1</span>
+<span class="co">#  5:         5         29        1 2000-12-05      2</span>
+<span class="co">#  6:         1         30        2 2000-01-29      2</span>
+<span class="co">#  7:         2         27        2         NA     NA</span>
+<span class="co">#  8:         3         26        2 2004-04-05      2</span>
+<span class="co">#  9:         4         32        2 2009-08-27      1</span>
+<span class="co"># 10:         5         29        2 2005-02-28      1</span>
+<span class="co"># 11:         1         30        3         NA     NA</span>
+<span class="co"># 12:         2         27        3         NA     NA</span>
+<span class="co"># 13:         3         26        3 2007-09-02      1</span>
+<span class="co"># 14:         4         32        3 2012-07-21      1</span>
+<span class="co"># 15:         5         29        3         NA     NA</span>
+
+<span class="kw">str</span>(DT.m2) ## col type is preserved
+<span class="co"># Classes &#39;data.table&#39; and &#39;data.frame&#39;:    15 obs. of  5 variables:</span>
+<span class="co">#  $ family_id : int  1 2 3 4 5 1 2 3 4 5 ...</span>
+<span class="co">#  $ age_mother: int  30 27 26 32 29 30 27 26 32 29 ...</span>
+<span class="co">#  $ variable  : Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1 1 1 1 1 2 2 2 2 2 ...</span>
+<span class="co">#  $ dob       : chr  &quot;1998-11-26&quot; &quot;1996-06-22&quot; &quot;2002-07-11&quot; &quot;2004-10-10&quot; ...</span>
+<span class="co">#  $ gender    : int  1 2 2 1 2 2 NA 2 1 1 ...</span>
+<span class="co">#  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</span></code></pre></div>
+</div>
+<div id="-patterns" class="section level4">
+<h4><span class="header-section-number">4.5.1.2</span> - Использование <code id="ch4.5.1.2">patterns()</code></h4>
+<p>Обычно в такой ситуации можно различить столбцы, которые мы хотим “расплавить”, по общему шаблону. Мы можем использовать функцию <code>patterns()</code>, реализованную для удобства, чтобы предоставить поддержку регулярных выражений для объединяемых столбцов. Предыдущая операция может быть переписана как:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DT.m2 =<span class="st"> </span><span class="kw">melt</span>(DT, <span class="dt">measure =</span> <span class="kw">patterns</span>(<span class="st">&quot;^dob&quot;</span>, <span class="st">&quot;^gender&quot;</span>), <span class="dt">value.name =</span> <span class="kw">c</span>(<span class="st">&quot;dob&quot;</span>, <span class="st">&quot;gender&quot;</span>))
+DT.m2
+<span class="co">#     family_id age_mother variable        dob gender</span>
+<span class="co">#  1:         1         30        1 1998-11-26      1</span>
+<span class="co">#  2:         2         27        1 1996-06-22      2</span>
+<span class="co">#  3:         3         26        1 2002-07-11      2</span>
+<span class="co">#  4:         4         32        1 2004-10-10      1</span>
+<span class="co">#  5:         5         29        1 2000-12-05      2</span>
+<span class="co">#  6:         1         30        2 2000-01-29      2</span>
+<span class="co">#  7:         2         27        2         NA     NA</span>
+<span class="co">#  8:         3         26        2 2004-04-05      2</span>
+<span class="co">#  9:         4         32        2 2009-08-27      1</span>
+<span class="co"># 10:         5         29        2 2005-02-28      1</span>
+<span class="co"># 11:         1         30        3         NA     NA</span>
+<span class="co"># 12:         2         27        3         NA     NA</span>
+<span class="co"># 13:         3         26        3 2007-09-02      1</span>
+<span class="co"># 14:         4         32        3 2012-07-21      1</span>
+<span class="co"># 15:         5         29        3         NA     NA</span></code></pre></div>
+<p>Вот и все!</p>
+<ul>
+<li><p>Мы можем удалить столбец <code>variable</code>, если нужно.</p></li>
+<li><p>Функциональность реализована полностью на C, и поэтому является не только простой, но также быстрой и эффективной с точки зрения использования памяти.</p></li>
+</ul>
+</div>
+</div>
+<div id="b---dcast" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> b) Расширенная функция <code id="ch4.5.2">dcast</code></h3>
+<p>Отлично! Теперь мы можем “расплавить” несколько столбцов одновременно. Теперь, имея набор данных <code>DT.m2</code>, показанный выше, как мы можем получить обратно тот же формат, в котором были исходные данные?</p>
+<p>Используя базовую функциональность <code>dcast</code>, мы должны были бы “слить” данные дважды, а затем объединить результаты. Но это, опять же, многословно, сложно и неэффективно.</p>
+<div id="ch4.5.2.1" class="section level4">
+<h4><span class="header-section-number">4.5.2.1</span> - Слияние нескольких <code>value.var</code> одновременно.</h4>
+<p>Теперь мы можем одновременно задать <strong>несколько столбцов</strong> <code>value.var</code> в <code>dcast</code> для таблиц <em>data.tables</em>, поскольку операции выполняются внутренне и эффективно.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## new &#39;cast&#39; functionality - multiple value.vars
+DT.c2 =<span class="st"> </span><span class="kw">dcast</span>(DT.m2, family_id +<span class="st"> </span>age_mother ~<span class="st"> </span>variable, <span class="dt">value.var =</span> <span class="kw">c</span>(<span class="st">&quot;dob&quot;</span>, <span class="st">&quot;gender&quot;</span>))
+DT.c2
+<span class="co">#    family_id age_mother      dob_1      dob_2      dob_3 gender_1 gender_2 gender_3</span>
+<span class="co"># 1:         1         30 1998-11-26 2000-01-29         NA        1        2       NA</span>
+<span class="co"># 2:         2         27 1996-06-22         NA         NA        2       NA       NA</span>
+<span class="co"># 3:         3         26 2002-07-11 2004-04-05 2007-09-02        2        2        1</span>
+<span class="co"># 4:         4         32 2004-10-10 2009-08-27 2012-07-21        1        1        1</span>
+<span class="co"># 5:         5         29 2000-12-05 2005-02-28         NA        2        1       NA</span></code></pre></div>
+<ul>
+<li><p>Атрибуты сохраняются для результатов, когда это возможно.</p></li>
+<li><p>Обеспечивается внутреннее и эффективное выполнение - не только быстрое, но и эффективно использующее память.</p></li>
+</ul>
+</div>
+<div id="ch4.5.2.2" class="section level4">
+<h4><span class="header-section-number">4.5.2.2</span> Множественные функции для <code>fun.aggregate</code>:</h4>
+<p>Вы также можете задать множественные функции для <code>fun.aggregate</code> в <code>dcast</code>. См. примеры в <code>?dcast</code>, иллюстрирующие эту функциональность.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="03_data.table_reference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05_data.table_second_ind.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
