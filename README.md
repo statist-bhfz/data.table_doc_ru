@@ -1,5 +1,9 @@
 ﻿# Перевод документации по data.table
 
+
+
+--> [Руководство по data.table на bookdown.org](https://bookdown.org/statist_/DataTableManual/) <--
+
 Данный репозиторий содержит переводы 4 виньеток по пакету 
 [data.table](https://github.com/Rdatatable/data.table):
 
